@@ -21,9 +21,7 @@ import game2048.model.Game2048Model;
  
 public class ScorePanel {
      
-    private static final Insets regularInsets   = 
-            new Insets(10, 10, 0, 10);
-    private static final Insets spaceInsets = 
+    private static final Insets margini   = 
             new Insets(10, 10, 10, 10);
      
     private static final NumberFormat nf =
@@ -41,6 +39,7 @@ public class ScorePanel {
     private JTextField currentCellField;
     //----------------------------------
     
+    
     public ScorePanel(Game2048Model model) {
         this.model = model;
         createPartControl();
@@ -56,75 +55,80 @@ public class ScorePanel {
         //HIGH_SCORE_LABEL
         //----------------------------------
         JLabel highScoreLabel = new JLabel("High Score:");       
-        addComponent(panel, highScoreLabel, 0, gridy, 1, 1, 
-                regularInsets, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
-         
+        AggiungiComponente(panel, 
+                           highScoreLabel, 
+                           0, //posizione asse X
+                           gridy, //posizione assy Y
+                           1, 
+                           1, 
+                           margini, 
+                           GridBagConstraints.LINE_START, 
+                           GridBagConstraints.HORIZONTAL);
+        
         highScoreField = new JTextField(6); // costruisce la field con una larghezza stabilita
         highScoreField.setEditable(false);
         highScoreField.setHorizontalAlignment(JTextField.RIGHT);       
-        addComponent(panel, highScoreField, 1, gridy++, 1, 1, 
-                regularInsets, GridBagConstraints.LINE_START, 
+        AggiungiComponente(panel, highScoreField, 1, gridy++, 1, 1, 
+                margini, GridBagConstraints.LINE_START, 
                 GridBagConstraints.HORIZONTAL);
         //----------------------------------
         
         //HIGH_CELL_LABEL
         //----------------------------------
         JLabel highCellLabel = new JLabel("High Cell:");       
-        addComponent(panel, highCellLabel, 0, gridy, 1, 1, 
-                spaceInsets, GridBagConstraints.LINE_START, 
+        AggiungiComponente(panel, highCellLabel, 0, gridy, 1, 1, 
+                margini, GridBagConstraints.LINE_START, 
                 GridBagConstraints.HORIZONTAL);
          
         highCellField = new JTextField(6);
         highCellField.setEditable(false);
         highCellField.setHorizontalAlignment(JTextField.RIGHT);
        
-        addComponent(panel, highCellField, 1, gridy++, 1, 1, 
-                spaceInsets, GridBagConstraints.LINE_START, 
+        AggiungiComponente(panel, highCellField, 1, gridy++, 1, 1, 
+                margini, GridBagConstraints.LINE_START, 
                 GridBagConstraints.HORIZONTAL);
         //----------------------------------
          
         //CURRENT_SCORE_LABEL
         //----------------------------------
         JLabel currentScoreLabel = new JLabel("Current Score:");
-        addComponent(panel, currentScoreLabel, 0, gridy, 1, 1, 
-                regularInsets, GridBagConstraints.LINE_START, 
+        AggiungiComponente(panel, currentScoreLabel, 0, gridy, 1, 1, 
+                margini, GridBagConstraints.LINE_START, 
                 GridBagConstraints.HORIZONTAL);
          
         currentScoreField = new JTextField(6);
         currentScoreField.setEditable(false);
         currentScoreField.setHorizontalAlignment(JTextField.RIGHT);
-        addComponent(panel, currentScoreField, 1, gridy++, 1, 1, 
-                regularInsets, GridBagConstraints.LINE_START, 
+        AggiungiComponente(panel, currentScoreField, 1, gridy++, 1, 1, 
+                margini, GridBagConstraints.LINE_START, 
                 GridBagConstraints.HORIZONTAL);
         //----------------------------------
          
         //CURRENT_CELL_LABEL
         //----------------------------------
         JLabel currentCellLabel = new JLabel("Current High Cell:");       
-        addComponent(panel, currentCellLabel, 0, gridy, 1, 1, 
-                regularInsets, GridBagConstraints.LINE_START, 
+        AggiungiComponente(panel, currentCellLabel, 0, gridy, 1, 1, 
+                margini, GridBagConstraints.LINE_START, 
                 GridBagConstraints.HORIZONTAL);
          
         currentCellField = new JTextField(6);
         currentCellField.setEditable(false);
         currentCellField.setHorizontalAlignment(JTextField.RIGHT);       
-        addComponent(panel, currentCellField, 1, gridy++, 1, 1, 
-                regularInsets, GridBagConstraints.LINE_START, 
+        AggiungiComponente(panel, currentCellField, 1, gridy++, 1, 1, 
+                margini, GridBagConstraints.LINE_START, 
                 GridBagConstraints.HORIZONTAL);
         //----------------------------------
     }
  
-    private void addComponent(Container container, 
+    private void AggiungiComponente(Container container, 
                               Component component,
-                              int gridx, // posizione riga
-                              int gridy, //posizione colonna
+                              int gridx, // posizione asse x
+                              int gridy, // posizione asse y
                               int gridwidth, //numero celle per riga
                               int gridheight, //numero celle colonna
                               Insets insets, //margini esterni
                               int anchor, 
                               int fill) { 
-
         GridBagConstraints gbc = new GridBagConstraints(gridx, 
                                                         gridy,
                                                         gridwidth, 
@@ -135,7 +139,7 @@ public class ScorePanel {
                                                         fill, 
                                                         insets,//external padding del component
                                                         0, //padding x field
-                                                        0); //padding 7 field
+                                                        0); //padding y field
 
         container.add(component, gbc);
     }
