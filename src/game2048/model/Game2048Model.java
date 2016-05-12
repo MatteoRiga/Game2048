@@ -213,8 +213,8 @@ public class Game2048Model {
         if (moveCellsLeftLoop())    dirty = true;
          
         for (int y = 0; y < NUM_CELLE; y++) {
-            for (int x = 0; x < (NUM_CELLE - 1); x++) {
-                int xx = x + 1;
+            for (int x = 0; x < (NUM_CELLE - 1); x++) { //faccio fino a (NUM_CELLE-1) perchè sennò sfora sul combine
+                int xx = x + 1; //per poter far bene il combine cell
                 dirty = combineCells(xx, y, x, y, dirty);
             }
         }
@@ -224,7 +224,7 @@ public class Game2048Model {
         return dirty;
     }
      
-    private boolean moveCellsLeftLoop() {
+    private boolean moveCellsLeftLoop() { 
         boolean dirty = false;
          
         for (int y = 0; y < NUM_CELLE; y++) {
@@ -239,7 +239,7 @@ public class Game2048Model {
                         dirty = true;
                     }
                 }
-            } while (rowDirty);     
+            } while (rowDirty); //fintanto che non ho due celle con val !=0 vicine 
         }
          
         return dirty;
@@ -287,7 +287,7 @@ public class Game2048Model {
             boolean dirty) {
         if (!grid[x1][y1].isZeroValue()) {
             int value = grid[x1][y1].getValue();
-            if (grid[x2][y2].getValue() == value) {
+            if (grid[x2][y2].getValue() == value) { //quindi posso unirle
                 int newValue = value + value;
                 grid[x2][y2].setValue(newValue);
                 grid[x1][y1].setValue(0);
@@ -300,8 +300,7 @@ public class Game2048Model {
      
     private boolean moveCell(int x1, int y1, int x2, int y2) {
         boolean dirty = false;
-        if (!grid[x1][y1].isZeroValue() 
-                && (grid[x2][y2].isZeroValue())) {
+        if (!grid[x1][y1].isZeroValue() && (grid[x2][y2].isZeroValue())) {
             if (DEBUG) {
                 System.out.println(displayMoveCell(x1, y1, x2, y2));
             }
@@ -376,14 +375,14 @@ public class Game2048Model {
         return new Dimension(width, width);
     }
      
-    public void draw(Graphics g) {
+    public void draw(Graphics g) {//disegna la griglia
         g.setColor(new Color(0xbbada0)); //prima era g.setColor(Color.DARK_GREY)
         Dimension d = getPreferredSize();
         g.fillRect(0, 0, d.width, d.height);
          
         for (int x = 0; x < NUM_CELLE; x++) {
             for (int y = 0; y < NUM_CELLE; y++) {
-                grid[x][y].draw(g);
+                grid[x][y].draw(g); //disegna la cella
             }
         }
     }
