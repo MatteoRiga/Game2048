@@ -8,10 +8,10 @@ package game2048;
 
 import javax.swing.SwingUtilities;
 
+
 import game2048.view.Game2048Frame;
 import game2048.model.Game2048Model;
-import game2048.model.Game2048Model;
- 
+
 public class Game20482 {
  
     private static void createAndShowGUI(){
