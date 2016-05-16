@@ -5,7 +5,6 @@
  */
 package game2048.view;
 
-
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -62,72 +61,72 @@ public class ScorePanel {
                            1, 
                            1, 
                            margini, 
-                           GridBagConstraints.LINE_START, 
-                           GridBagConstraints.HORIZONTAL);
+                           GridBagConstraints.CENTER, 
+                           GridBagConstraints.NONE);
         
         highScoreField = new JTextField(6); // costruisce la field con una larghezza stabilita
         highScoreField.setEditable(false);
         highScoreField.setHorizontalAlignment(JTextField.RIGHT);       
         AggiungiComponente(panel, highScoreField, 1, gridy++, 1, 1, 
-                margini, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
+                margini, GridBagConstraints.CENTER, 
+                GridBagConstraints.NONE);
         //----------------------------------
         
         //HIGH_CELL_LABEL
         //----------------------------------
         JLabel highCellLabel = new JLabel("High Cell:");       
         AggiungiComponente(panel, highCellLabel, 0, gridy, 1, 1, 
-                margini, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
+                margini, GridBagConstraints.CENTER, 
+                GridBagConstraints.NONE);
          
         highCellField = new JTextField(6);
         highCellField.setEditable(false);
         highCellField.setHorizontalAlignment(JTextField.RIGHT);
        
         AggiungiComponente(panel, highCellField, 1, gridy++, 1, 1, 
-                margini, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
+                margini, GridBagConstraints.CENTER, 
+                GridBagConstraints.NONE);
         //----------------------------------
          
         //CURRENT_SCORE_LABEL
         //----------------------------------
         JLabel currentScoreLabel = new JLabel("Current Score:");
         AggiungiComponente(panel, currentScoreLabel, 0, gridy, 1, 1, 
-                margini, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
+                margini, GridBagConstraints.CENTER, 
+                GridBagConstraints.NONE);
          
         currentScoreField = new JTextField(6);
         currentScoreField.setEditable(false);
         currentScoreField.setHorizontalAlignment(JTextField.RIGHT);
         AggiungiComponente(panel, currentScoreField, 1, gridy++, 1, 1, 
-                margini, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
+                margini, GridBagConstraints.CENTER, 
+                GridBagConstraints.NONE);
         //----------------------------------
          
         //CURRENT_CELL_LABEL
         //----------------------------------
         JLabel currentCellLabel = new JLabel("Current High Cell:");       
         AggiungiComponente(panel, currentCellLabel, 0, gridy, 1, 1, 
-                margini, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
+                margini, GridBagConstraints.CENTER, 
+                GridBagConstraints.NONE);
          
         currentCellField = new JTextField(6);
         currentCellField.setEditable(false);
         currentCellField.setHorizontalAlignment(JTextField.RIGHT);       
         AggiungiComponente(panel, currentCellField, 1, gridy++, 1, 1, 
-                margini, GridBagConstraints.LINE_START, 
-                GridBagConstraints.HORIZONTAL);
+                margini, GridBagConstraints.CENTER, 
+                GridBagConstraints.NONE);
         //----------------------------------
     }
  
-    private void AggiungiComponente(Container container, 
-                              Component component,
+    private void AggiungiComponente(Container container,  //è il mio jpanel
+                              Component component, //la componente da aggiungere
                               int gridx, // posizione asse x
                               int gridy, // posizione asse y
                               int gridwidth, //numero celle per riga
                               int gridheight, //numero celle colonna
                               Insets insets, //margini esterni
-                              int anchor, 
+                              int anchor, //
                               int fill) { 
         GridBagConstraints gbc = new GridBagConstraints(gridx, 
                                                         gridy,

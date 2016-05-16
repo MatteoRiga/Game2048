@@ -89,7 +89,8 @@ public class Game2048Frame {
         return sidePanel;
     }
      
-    private void setKeyBindings() {
+    private void setKeyBindings() { 
+        //permette di fare un Bind tra un evento di input e un oggetto
         InputMap inputMap = gridPanel.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
         
         inputMap.put(KeyStroke.getKeyStroke("W"), "up arrow");

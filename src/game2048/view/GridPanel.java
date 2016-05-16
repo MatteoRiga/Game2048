@@ -30,7 +30,7 @@ public class GridPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        model.draw(g);
+        model.draw(g);//disegna la griglia
          
         if (model.isGameOver()) {
             g.drawImage(image.getImage(), 0, 0, null);

@@ -12,6 +12,9 @@ import java.awt.Point;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+
+
  
 public class Cell {
      
@@ -60,9 +63,11 @@ public class Cell {
     public void draw(Graphics g) {
         if (value == 0) {
             g.setColor(new Color(0xcdc1b4)); //prima era Color.DARK_GREY
-            g.fillRect(cellLocation.x, cellLocation.y, 
+            g.fillRect( //draw the outline of the specific rectangle
+                    cellLocation.x, cellLocation.y, 
                     CELL_WIDTH, CELL_WIDTH);
-        } else {        
+        } else {   
+
             Font font = g.getFont();
             FontRenderContext frc = 
                     new FontRenderContext(null, true, true);
@@ -135,6 +140,7 @@ public class Cell {
         return color;
     }
      
+    //PER COLORE VALORE DELLA CELLA
     //condizione_booleana ? condizione_vera : condizione_falsa;
     private Color getTextColor() {
         return (value > 4) ? Color.WHITE : Color.DARK_GRAY;

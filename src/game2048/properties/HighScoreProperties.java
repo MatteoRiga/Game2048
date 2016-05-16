@@ -50,6 +50,7 @@ public class HighScoreProperties {
     }
      
     public void saveProperties() {
+        
         Properties properties = new Properties();
         properties.setProperty(highScore, 
                 Integer.toString(model.getHighScore()));
