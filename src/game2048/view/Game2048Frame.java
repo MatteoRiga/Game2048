@@ -22,7 +22,9 @@ import game2048.controller.DownArrowAction;
 import game2048.controller.LeftArrowAction;
 import game2048.controller.RightArrowAction;
 import game2048.model.Game2048Model;
-import game2048.properties.HighScoreProperties;
+
+import game2048.properties.ScoreManager;
+
 import java.awt.Dimension;
  
 //rappresenta l'intera finestra di gioco
@@ -33,8 +35,8 @@ public class Game2048Frame {
     private Game2048Model model;
      
     private GridPanel gridPanel;
-     
-    private HighScoreProperties highScoreProperties;
+         
+    private ScoreManager scoreManager;
      
     private JFrame frame;
      
@@ -44,8 +46,9 @@ public class Game2048Frame {
      
     public Game2048Frame(Game2048Model model) {
         this.model = model;
-        this.highScoreProperties = new HighScoreProperties(model);
-        this.highScoreProperties.loadProperties();
+        this.scoreManager = new ScoreManager(model);
+        this.scoreManager.loadGame();
+        
         createPartControl();
     }
  
@@ -122,7 +125,7 @@ public class Game2048Frame {
      
     public void exitProcedure() {
         model.setHighScores();
-        highScoreProperties.saveProperties();
+        scoreManager.saveGame();
         frame.dispose();
         System.exit(0);
     }

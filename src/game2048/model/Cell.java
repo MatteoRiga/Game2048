@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -60,12 +61,14 @@ public class Cell {
         this.cellLocation = cellLocation;
     }
  
-    public void draw(Graphics g) {
+    public void draw(Graphics g) {//disegna tutte le celle
         if (value == 0) {
             g.setColor(new Color(0xcdc1b4)); //prima era Color.DARK_GREY
-            g.fillRect( //draw the outline of the specific rectangle
+            /*g.fillRect( //draw the outline of the specific rectangle
                     cellLocation.x, cellLocation.y, 
                     CELL_WIDTH, CELL_WIDTH);
+            */
+            g.fillRoundRect(cellLocation.x, cellLocation.y, CELL_WIDTH, CELL_WIDTH, 15, 15); // per contenitori celle stondate
         } else {   
 
             Font font = g.getFont();
@@ -81,7 +84,7 @@ public class Cell {
     }
      
     private BufferedImage createImage(Font font, FontRenderContext frc,
-            int width, String s) {
+            int width, String s) { //disegna la cella
  
         Font largeFont = font.deriveFont((float) (width / 4));
         Rectangle2D r = largeFont.getStringBounds(s, frc);
@@ -94,9 +97,12 @@ public class Cell {
                 BufferedImage.TYPE_INT_RGB);
          
         Graphics gg = image.getGraphics();
-        gg.setColor(getTileColor());
+        gg.setColor(new Color(0xcdc1b4));
         gg.fillRect(0, 0, image.getWidth(), image.getHeight());
- 
+        gg.setColor(getTileColor());
+        gg.fillRoundRect(0, 0, image.getWidth(), image.getHeight(), 25, 25); //la disegna stondata, ma qualche problema!!
+
+
         int x = (width / 2) - (rWidth / 2) - rX;
         int y = (width / 2) - (rHeight / 2) - rY;
          

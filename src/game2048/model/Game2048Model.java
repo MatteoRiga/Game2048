@@ -375,11 +375,12 @@ public class Game2048Model {
         return new Dimension(width, width);
     }
      
-    public void draw(Graphics g) {//disegna la griglia
+    public void draw(Graphics g) {//disegna la tabella che contiene la griglia
         g.setColor(new Color(0xbbada0)); //prima era g.setColor(Color.DARK_GREY)
         Dimension d = getPreferredSize();
         g.fillRect(0, 0, d.width, d.height);
-         
+        //g.fillRoundRect(0, 0, d.width, d.height, 15, 15);
+
         for (int x = 0; x < NUM_CELLE; x++) {
             for (int y = 0; y < NUM_CELLE; y++) {
                 grid[x][y].draw(g); //disegna la cella
