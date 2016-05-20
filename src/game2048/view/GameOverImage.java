@@ -45,9 +45,10 @@ public class GameOverImage implements Runnable {
         g.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER));
          
-        g.setColor(Color.BLUE);
-        Font font = g.getFont();
-        Font largeFont = font.deriveFont(72.0F);
+        g.setColor(Color.DARK_GRAY);
+        //Font font = g.getFont();
+        Font font = new Font("Bebas Neue Regular", Font.PLAIN, 28);
+        Font largeFont = font.deriveFont(58.0F);
         FontRenderContext frc = 
                 new FontRenderContext(null, true, true);
         Rectangle2D r = largeFont.getStringBounds(s, frc);

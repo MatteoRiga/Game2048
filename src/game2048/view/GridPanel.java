@@ -23,15 +23,20 @@ public class GridPanel extends JPanel {
     public GridPanel(Game2048Model model) {
         this.model = model;
         this.setPreferredSize(model.getPreferredSize());
-        this.image = new GameOverImage(model);
+        //istanzio gia la scritta gameover , ma compare solo quando
+        //non posso più muovere caselle e la griglia è piena
+        this.image = new GameOverImage(model); 
+        
         this.image.run();
     }
  
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    public void paint(Graphics g) { //prima era paintComponent
+        super.paint(g);
         model.draw(g);//disegna la griglia
          
+        //se la griglia è piena e non posso più muovere caselle
+        //disegno il gameOver
         if (model.isGameOver()) {
             g.drawImage(image.getImage(), 0, 0, null);
         }

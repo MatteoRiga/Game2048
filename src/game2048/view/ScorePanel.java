@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
  
 import game2048.model.Game2048Model;
+import java.awt.Color;
  
 public class ScorePanel {
      
@@ -48,7 +49,7 @@ public class ScorePanel {
     private void createPartControl() {
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
- 
+         panel.setBackground(Color.RED); //TOGLIEREEEE
         int gridy = 0;
          
         //HIGH_SCORE_LABEL

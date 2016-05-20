@@ -24,9 +24,11 @@ import game2048.controller.RightArrowAction;
 import game2048.model.Game2048Model;
 
 import game2048.properties.ScoreManager;
+import java.awt.Color;
 
 import java.awt.Dimension;
- 
+
+
 //rappresenta l'intera finestra di gioco
 public class Game2048Frame {
      
@@ -62,6 +64,7 @@ public class Game2048Frame {
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setPreferredSize(new Dimension(600, 370)); //dimensioni finestra
         frame.setResizable(false); //non modificabili
+        
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
@@ -84,45 +87,46 @@ public class Game2048Frame {
  
     private JPanel createSidePanel() {
         JPanel sidePanel = new JPanel();
+        
         sidePanel.setLayout(new BoxLayout(sidePanel, 
                 BoxLayout.PAGE_AXIS));
         sidePanel.add(scorePanel.getPanel());
         sidePanel.add(Box.createVerticalStrut(30));
         sidePanel.add(controlPanel.getPanel());
+        sidePanel.setBackground(Color.ORANGE);//TOGLIEREEEE
         return sidePanel;
     }
      
     private void setKeyBindings() { 
         //permette di fare un Bind tra un evento di input e un oggetto
         InputMap inputMap = gridPanel.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+        //prima faccio con WHEN_IN_FOCUSED_WINDOW che ha id=2, quindi reperibile da WASD
         
-        inputMap.put(KeyStroke.getKeyStroke("W"), "up arrow");
-        inputMap.put(KeyStroke.getKeyStroke("S"), "down arrow");
-        inputMap.put(KeyStroke.getKeyStroke("A"), "left arrow");
-        inputMap.put(KeyStroke.getKeyStroke("D"), "right arrow");
+        inputMap.put(KeyStroke.getKeyStroke("W"), "FRECCIA_UP");
+        inputMap.put(KeyStroke.getKeyStroke("S"), "FRECCIA_DW");
+        inputMap.put(KeyStroke.getKeyStroke("A"), "FRECCIA_SX");
+        inputMap.put(KeyStroke.getKeyStroke("D"), "FRECCIA_DX");
          
-        inputMap.put(KeyStroke.getKeyStroke("UP"), "up arrow");
-        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "down arrow");
-        inputMap.put(KeyStroke.getKeyStroke("LEFT"), "left arrow");
-        inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "right arrow");
+        inputMap.put(KeyStroke.getKeyStroke("UP"), "FRECCIA_UP");
+        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "FRECCIA_DW");
+        inputMap.put(KeyStroke.getKeyStroke("LEFT"), "FRECCIA_SX");
+        inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "FRECCIA_DX");
          
         inputMap = gridPanel.getInputMap(JPanel.WHEN_FOCUSED);
-        inputMap.put(KeyStroke.getKeyStroke("UP"), "up arrow");
-        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "down arrow");
-        inputMap.put(KeyStroke.getKeyStroke("LEFT"), "left arrow");
-        inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "right arrow");
+        //poi faccio con WHEN_FOCUSED che ha id=0, quindi reperibile da UP,DW,SX,DX
+
+        inputMap.put(KeyStroke.getKeyStroke("UP"), "FRECCIA_UP");
+        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "FRECCIA_DW");
+        inputMap.put(KeyStroke.getKeyStroke("LEFT"), "FRECCIA_SX");
+        inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "FRECCIA_DX");
  
-         
-        gridPanel.getActionMap().put("up arrow", 
-                new UpArrowAction(this, model));
-        gridPanel.getActionMap().put("down arrow", 
-                new DownArrowAction(this, model));
-        gridPanel.getActionMap().put("left arrow", 
-                new LeftArrowAction(this, model));
-        gridPanel.getActionMap().put("right arrow", 
-                new RightArrowAction(this, model));
+        
+        gridPanel.getActionMap().put("FRECCIA_UP",new UpArrowAction(this, model));
+        gridPanel.getActionMap().put("FRECCIA_DW", new DownArrowAction(this, model));
+        gridPanel.getActionMap().put("FRECCIA_SX", new LeftArrowAction(this, model));
+        gridPanel.getActionMap().put("FRECCIA_DX", new RightArrowAction(this, model));
     }
-     
+    
     public void exitProcedure() {
         model.setHighScores();
         scoreManager.saveGame();
@@ -137,6 +141,6 @@ public class Game2048Frame {
     public void updateScorePanel() {
         scorePanel.updatePartControl();
     }
- 
+    
 }
 

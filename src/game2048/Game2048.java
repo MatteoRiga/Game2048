@@ -16,6 +16,7 @@ public class Game2048 {
      
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run(){
                 Game2048Frame game = new Game2048Frame(new Game2048Model());
             }

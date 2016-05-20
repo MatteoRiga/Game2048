@@ -17,7 +17,9 @@ import javax.swing.JPanel;
  
 import game2048.controller.StartGameActionListener;
 import game2048.model.Game2048Model;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
  
 public class ControlPanel {
     
@@ -43,7 +45,7 @@ public class ControlPanel {
         
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-         
+        panel.setBackground(Color.BLACK); ///TOGLIEREEEEEEEE
         JButton startGameButton = new JButton("Start");
         startGameButton.addActionListener(listener);
         startGameButton.setPreferredSize(new Dimension(140, 40));

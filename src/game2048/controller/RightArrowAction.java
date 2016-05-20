@@ -20,6 +20,7 @@ public class RightArrowAction extends AbstractAction {
     private Game2048Frame frame;
      
     private Game2048Model model;
+    
  
     public RightArrowAction(Game2048Frame frame, Game2048Model model) {
         this.frame = frame;

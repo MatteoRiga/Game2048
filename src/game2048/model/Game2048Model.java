@@ -14,7 +14,7 @@ import java.util.Random;
 public class Game2048Model {
      
     //attivare a true per avere il debug del gioco
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
      
     private static final int SPAZIATURA_CELLE = 6; //spazio fra le celle ->prima era 16
     private static final int NUM_CELLE = 4; //numero di celle
@@ -375,7 +375,7 @@ public class Game2048Model {
         return new Dimension(width, width);
     }
      
-    public void draw(Graphics g) {//disegna la tabella che contiene la griglia
+    public void draw(Graphics g) {//(ri-)disegna la l'intera griglia di gioco
         g.setColor(new Color(0xbbada0)); //prima era g.setColor(Color.DARK_GREY)
         Dimension d = getPreferredSize();
         g.fillRect(0, 0, d.width, d.height);

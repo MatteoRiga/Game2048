@@ -9,12 +9,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-
 
  
 public class Cell {
@@ -61,7 +58,7 @@ public class Cell {
         this.cellLocation = cellLocation;
     }
  
-    public void draw(Graphics g) {//disegna tutte le celle
+    public void draw(Graphics g) {//disegna una singola cella
         if (value == 0) {
             g.setColor(new Color(0xcdc1b4)); //prima era Color.DARK_GREY
             /*g.fillRect( //draw the outline of the specific rectangle
@@ -71,7 +68,8 @@ public class Cell {
             g.fillRoundRect(cellLocation.x, cellLocation.y, CELL_WIDTH, CELL_WIDTH, 15, 15); // per contenitori celle stondate
         } else {   
 
-            Font font = g.getFont();
+            //Font font = g.getFont();
+            Font font = new Font("Bebas Neue Regular", Font.PLAIN, 28);
             FontRenderContext frc = 
                     new FontRenderContext(null, true, true);
      
@@ -99,7 +97,8 @@ public class Cell {
         Graphics gg = image.getGraphics();
         gg.setColor(new Color(0xcdc1b4));
         gg.fillRect(0, 0, image.getWidth(), image.getHeight());
-        gg.setColor(getTileColor());
+        
+        gg.setColor(CellColor.getTileColor(value));
         gg.fillRoundRect(0, 0, image.getWidth(), image.getHeight(), 25, 25); //la disegna stondata, ma qualche problema!!
 
 
@@ -107,48 +106,12 @@ public class Cell {
         int y = (width / 2) - (rHeight / 2) - rY;
          
         gg.setFont(largeFont);
-        gg.setColor(getTextColor());
+        
+        gg.setColor(CellColor.getTextColor(value));
         gg.drawString(s, x, y);
         gg.dispose();
         return image;
     }
      
-    private Color getTileColor() {
-        Color color = Color.WHITE;
-         
-        switch (value) {
-            case 2:     color = new Color(0xeee4da);
-                        break;
-            case 4:     color = new Color(0xede0c8);
-                        break;
-            case 8:     color = new Color(0xf2b179);
-                        break;
-            case 16:    color = new Color(0xf59563);
-                        break;
-            case 32:    color = new Color(0xf67c5f);
-                        break;
-            case 64:    color = new Color(0xf65e3b);
-                        break;
-            case 128:   color = new Color(0xedcf72);
-                        break;
-            case 256:   color = new Color(0xedcc61);
-                        break;
-            case 512:   color = new Color(0xedc850);
-                        break;
-            case 1024:  color = new Color(0xedc53f);
-                        break;
-            case 2048:  color = new Color(0xedc22e);
-                        break;
-            default:    color = new Color(0xcdc1b4);
-                        break;
-        }
-         
-        return color;
-    }
-     
-    //PER COLORE VALORE DELLA CELLA
-    //condizione_booleana ? condizione_vera : condizione_falsa;
-    private Color getTextColor() {
-        return (value > 4) ? Color.WHITE : Color.DARK_GRAY;
-    }
+ 
 }

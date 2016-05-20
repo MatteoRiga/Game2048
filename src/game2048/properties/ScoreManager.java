@@ -37,13 +37,15 @@ public class ScoreManager {
 
 		this.model = model;
 	}
-
+         
+       //posso togliere
 	public void reset() {
 		File f = new File(filePath, temp);
 		if (f.isFile()) {
 			f.delete();
 		}
 		highScore = 0;
+                highCell = 0;
 
 	}
 
