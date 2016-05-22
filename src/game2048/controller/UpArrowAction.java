@@ -28,10 +28,10 @@ public class UpArrowAction extends AbstractAction {
  
     @Override
     public void actionPerformed(ActionEvent event) {        
-        if (model.isArrowActive()) {
+        if (model.puoiMuovere()) {
             if (model.moveCellsUp()) {
                 if (model.isGameOver()) {
-                    model.setArrowActive(false);
+                    model.setPuoiMuovere(false); // va false solo in questo caso, quando è gameOver
                 } else {
                     addNewCell();
                 }

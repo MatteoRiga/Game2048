@@ -28,10 +28,10 @@ public class DownArrowAction extends AbstractAction {
      
     @Override
     public void actionPerformed(ActionEvent event) {    
-        if (model.isArrowActive()) {
+        if (model.puoiMuovere()) {
             if (model.moveCellsDown()) {
                 if (model.isGameOver()) {
-                    model.setArrowActive(false);
+                    model.setPuoiMuovere(false);
                 } else {
                     model.addNewCell();
                  

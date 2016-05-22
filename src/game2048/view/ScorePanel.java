@@ -49,7 +49,7 @@ public class ScorePanel {
     private void createPartControl() {
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-         panel.setBackground(Color.RED); //TOGLIEREEEE
+        panel.setBackground(Color.RED); //TOGLIEREEEE
         int gridy = 0;
          
         //HIGH_SCORE_LABEL

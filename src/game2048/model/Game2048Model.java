@@ -14,12 +14,12 @@ import java.util.Random;
 public class Game2048Model {
      
     //attivare a true per avere il debug del gioco
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
      
     private static final int SPAZIATURA_CELLE = 6; //spazio fra le celle ->prima era 16
     private static final int NUM_CELLE = 4; //numero di celle
      
-    private boolean arrowActive;
+    private boolean puoi_muovere;
      
     private int highScore; //punteggio più alto
     private int highCell; //casella più alta
@@ -37,7 +37,7 @@ public class Game2048Model {
         this.highCell = 0;
         this.currentScore = 0;
         this.currentCell = 0;
-        this.arrowActive = false;
+        this.puoi_muovere = false;
         initializeGrid();
     }
      
@@ -152,18 +152,18 @@ public class Game2048Model {
         boolean dirty = false;
          
         for (int x = 0; x < NUM_CELLE; x++) {
-            boolean columnDirty = false;
-            do {
-                columnDirty = false;
+            //boolean columnDirty = false;
+            //do {
+                //columnDirty = false;
                 for (int y = 0; y < (NUM_CELLE - 1); y++) {
-                    int yy = y + 1;
+                    int yy = y + 1; 
                     boolean cellDirty = moveCell(x, yy, x, y);
-                    if (cellDirty) {
-                        columnDirty = true;
+                    if (cellDirty == true) {
+                        //columnDirty = true;
                         dirty = true;
                     }
                 }
-            } while (columnDirty);      
+            //} while (columnDirty);      
         }
          
         return dirty;
@@ -190,18 +190,18 @@ public class Game2048Model {
         boolean dirty = false;
          
         for (int x = 0; x < NUM_CELLE; x++) {
-            boolean columnDirty = false;
-            do {
-                columnDirty = false;
+            //boolean columnDirty = false;
+            //do {
+                //columnDirty = false;
                 for (int y = NUM_CELLE - 1; y > 0; y--) {
                     int yy = y - 1;
                     boolean cellDirty = moveCell(x, yy, x, y);
                     if (cellDirty) {
-                        columnDirty = true;
+                        //columnDirty = true;
                         dirty = true;
                     }
                 }
-            } while (columnDirty);      
+            //} while (columnDirty);      
         }
          
         return dirty;
@@ -228,18 +228,18 @@ public class Game2048Model {
         boolean dirty = false;
          
         for (int y = 0; y < NUM_CELLE; y++) {
-            boolean rowDirty = false;
-            do {
-                rowDirty = false;
+            //boolean rowDirty = false;
+            //do {
+                //rowDirty = false;
                 for (int x = 0; x < (NUM_CELLE - 1); x++) {
                     int xx = x + 1;
                     boolean cellDirty = moveCell(xx, y, x, y);
                     if (cellDirty) {
-                        rowDirty = true;
+                        //rowDirty = true;
                         dirty = true;
                     }
                 }
-            } while (rowDirty); //fintanto che non ho due celle con val !=0 vicine 
+            //} while (rowDirty); //fintanto che non ho due celle con val !=0 vicine 
         }
          
         return dirty;
@@ -266,18 +266,18 @@ public class Game2048Model {
         boolean dirty = false;
          
         for (int y = 0; y < NUM_CELLE; y++) {
-            boolean rowDirty = false;
-            do {
-                rowDirty = false;
+            //boolean rowDirty = false;
+            //do {
+                //rowDirty = false;
                 for (int x = (NUM_CELLE - 1); x > 0; x--) {
                     int xx = x - 1;
                     boolean cellDirty = moveCell(xx, y, x, y);
                     if (cellDirty) {
-                        rowDirty = true;
+                        //rowDirty = true;
                         dirty = true;
                     }
                 }
-            } while (rowDirty);     
+            //} while (rowDirty);     
         }
          
         return dirty;
@@ -299,17 +299,17 @@ public class Game2048Model {
     }
      
     private boolean moveCell(int x1, int y1, int x2, int y2) {
-        boolean dirty = false;
-        if (!grid[x1][y1].isZeroValue() && (grid[x2][y2].isZeroValue())) {
+        boolean muovi = false;
+        if (grid[x1][y1].isZeroValue()==false && (grid[x2][y2].isZeroValue()==true)) {
             if (DEBUG) {
                 System.out.println(displayMoveCell(x1, y1, x2, y2));
             }
             int value = grid[x1][y1].getValue();
             grid[x2][y2].setValue(value);
             grid[x1][y1].setValue(0);
-            dirty = true;
+            muovi = true;
         }
-        return dirty;
+        return muovi;
     }
      
     private String displayMoveCell(int x1, int y1, int x2, int y2) {
@@ -361,22 +361,21 @@ public class Game2048Model {
         return currentCell;
     }
  
-    public boolean isArrowActive() {
-        return arrowActive;
+    public boolean puoiMuovere() {
+        return puoi_muovere;
     }
  
-    public void setArrowActive(boolean arrowActive) {
-        this.arrowActive = arrowActive;
+    public void setPuoiMuovere(boolean puoi_muovere) {
+        this.puoi_muovere = puoi_muovere;
     }
  
     public Dimension getPreferredSize() {
-        int width = NUM_CELLE * Cell.getCellWidth() + 
-                SPAZIATURA_CELLE * 5;
+        int width = NUM_CELLE * Cell.getCellWidth() + SPAZIATURA_CELLE * 5;
         return new Dimension(width, width);
     }
      
     public void draw(Graphics g) {//(ri-)disegna la l'intera griglia di gioco
-        g.setColor(new Color(0xbbada0)); //prima era g.setColor(Color.DARK_GREY)
+        g.setColor(new Color(ColorUtil.colore_griglia));
         Dimension d = getPreferredSize();
         g.fillRect(0, 0, d.width, d.height);
         //g.fillRoundRect(0, 0, d.width, d.height, 15, 15);

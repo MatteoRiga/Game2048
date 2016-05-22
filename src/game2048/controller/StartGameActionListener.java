@@ -33,7 +33,7 @@ public class StartGameActionListener implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         model.setHighScores();
         model.initializeGrid();
-        model.setArrowActive(true);
+        model.setPuoiMuovere(true); // va a true appena clicco start
         model.addNewCell();
         model.addNewCell();
          

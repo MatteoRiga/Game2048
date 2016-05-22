@@ -28,10 +28,10 @@ public class LeftArrowAction extends AbstractAction {
      
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (model.isArrowActive()) {
+        if (model.puoiMuovere()) {
             if (model.moveCellsLeft()) {
                 if (model.isGameOver()) {
-                    model.setArrowActive(false);
+                    model.setPuoiMuovere(false);
                 } else {
                     model.addNewCell();
                      

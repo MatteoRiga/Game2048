@@ -11,7 +11,9 @@ import java.awt.Color;
  *
  * @author Matteo
  */
-public class CellColor {
+public class ColorUtil {
+    
+    public final static int colore_griglia = 0xbbada0;
     
     public final static int color_2 = 0xeee4da;
     public final static int color_4 = 0xede0c8;
@@ -30,29 +32,29 @@ public class CellColor {
         Color color = Color.WHITE;
          
         switch (valore) {
-            case 2:     color = new Color(CellColor.color_2);
+            case 2:     color = new Color(ColorUtil.color_2);
                         break;
-            case 4:     color = new Color(CellColor.color_4);
+            case 4:     color = new Color(ColorUtil.color_4);
                         break;
-            case 8:     color = new Color(CellColor.color_8);
+            case 8:     color = new Color(ColorUtil.color_8);
                         break;
-            case 16:    color = new Color(CellColor.color_16);
+            case 16:    color = new Color(ColorUtil.color_16);
                         break;
-            case 32:    color = new Color(CellColor.color_32);
+            case 32:    color = new Color(ColorUtil.color_32);
                         break;
-            case 64:    color = new Color(CellColor.color_64);
+            case 64:    color = new Color(ColorUtil.color_64);
                         break;
-            case 128:   color = new Color(CellColor.color_128);
+            case 128:   color = new Color(ColorUtil.color_128);
                         break;
-            case 256:   color = new Color(CellColor.color_256);
+            case 256:   color = new Color(ColorUtil.color_256);
                         break;
-            case 512:   color = new Color(CellColor.color_512);
+            case 512:   color = new Color(ColorUtil.color_512);
                         break;
-            case 1024:  color = new Color(CellColor.color_1024);
+            case 1024:  color = new Color(ColorUtil.color_1024);
                         break;
-            case 2048:  color = new Color(CellColor.color_2048);
+            case 2048:  color = new Color(ColorUtil.color_2048);
                         break;
-            default:    color = new Color(CellColor.color_vuota);
+            default:    color = new Color(ColorUtil.color_vuota);
                         break;
         }
          
