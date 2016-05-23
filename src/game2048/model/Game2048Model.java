@@ -132,159 +132,158 @@ public class Game2048Model {
     }
      
     public boolean moveCellsUp() {
-        boolean dirty = false;
+        boolean mosso = false;
          
-        if (moveCellsUpLoop())  dirty = true;
+        if (moveCellsUpLoop())  mosso = true;
          
         for (int x = 0; x < NUM_CELLE; x++) {
             for (int y = 0; y < (NUM_CELLE - 1); y++) {
                 int yy = y + 1;
-                dirty = combineCells(x, yy, x, y, dirty);
+                mosso = combineCells(x, yy, x, y, mosso);
             }
         }
          
-        if (moveCellsUpLoop())  dirty = true;
+        if (moveCellsUpLoop())  mosso = true;
          
-        return dirty;
+        return mosso;
     }
      
     private boolean moveCellsUpLoop() {
-        boolean dirty = false;
+        boolean mosso = false;
          
         for (int x = 0; x < NUM_CELLE; x++) {
-            //boolean columnDirty = false;
-            //do {
-                //columnDirty = false;
+            boolean columnDirty = false;
+            do {
+                columnDirty = false;
                 for (int y = 0; y < (NUM_CELLE - 1); y++) {
-                    int yy = y + 1; 
+                    int yy = y + 1;
                     boolean cellDirty = moveCell(x, yy, x, y);
-                    if (cellDirty == true) {
-                        //columnDirty = true;
-                        dirty = true;
+                    if (cellDirty) {
+                        columnDirty = true;
+                        mosso = true;
                     }
                 }
-            //} while (columnDirty);      
+            } while (columnDirty);      
         }
          
-        return dirty;
+        return mosso;
     }
      
     public boolean moveCellsDown() {
-        boolean dirty = false;
+        boolean mosso = false;
          
-        if (moveCellsDownLoop())    dirty = true;
+        if (moveCellsDownLoop())    mosso = true;
          
         for (int x = 0; x < NUM_CELLE; x++) {
             for (int y = NUM_CELLE - 1; y > 0; y--) {
                 int yy = y - 1;
-                dirty = combineCells(x, yy, x, y, dirty);
+                mosso = combineCells(x, yy, x, y, mosso);
             }
         }
          
-        if (moveCellsDownLoop())    dirty = true;
+        if (moveCellsDownLoop())    mosso = true;
          
-        return dirty;
+        return mosso;
     }
      
     private boolean moveCellsDownLoop() {
-        boolean dirty = false;
+        boolean mosso = false;
          
         for (int x = 0; x < NUM_CELLE; x++) {
-            //boolean columnDirty = false;
-            //do {
-                //columnDirty = false;
+            boolean columnDirty = false;
+            do {
+                columnDirty = false;
                 for (int y = NUM_CELLE - 1; y > 0; y--) {
                     int yy = y - 1;
                     boolean cellDirty = moveCell(x, yy, x, y);
                     if (cellDirty) {
-                        //columnDirty = true;
-                        dirty = true;
+                        columnDirty = true;
+                        mosso = true;
                     }
                 }
-            //} while (columnDirty);      
+            } while (columnDirty==true);      
         }
          
-        return dirty;
+        return mosso;
     }
      
     public boolean moveCellsLeft() {
-        boolean dirty = false;
+        boolean mosso = false;
          
-        if (moveCellsLeftLoop())    dirty = true;
+        if (moveCellsLeftLoop())    mosso = true;
          
         for (int y = 0; y < NUM_CELLE; y++) {
             for (int x = 0; x < (NUM_CELLE - 1); x++) { //faccio fino a (NUM_CELLE-1) perchè sennò sfora sul combine
                 int xx = x + 1; //per poter far bene il combine cell
-                dirty = combineCells(xx, y, x, y, dirty);
+                mosso = combineCells(xx, y, x, y, mosso);
             }
         }
          
-        if (moveCellsLeftLoop())    dirty = true;
+        if (moveCellsLeftLoop())    mosso = true;
          
-        return dirty;
+        return mosso;
     }
      
     private boolean moveCellsLeftLoop() { 
-        boolean dirty = false;
+        boolean mosso = false;
          
         for (int y = 0; y < NUM_CELLE; y++) {
-            //boolean rowDirty = false;
-            //do {
-                //rowDirty = false;
+            boolean rowDirty = false;
+            do {
+                rowDirty = false;
                 for (int x = 0; x < (NUM_CELLE - 1); x++) {
                     int xx = x + 1;
                     boolean cellDirty = moveCell(xx, y, x, y);
                     if (cellDirty) {
-                        //rowDirty = true;
-                        dirty = true;
+                        rowDirty = true;
+                        mosso = true;
                     }
                 }
-            //} while (rowDirty); //fintanto che non ho due celle con val !=0 vicine 
+            } while (rowDirty); //fintanto che non ho due celle con val !=0 vicine 
         }
          
-        return dirty;
+        return mosso;
     }
      
     public boolean moveCellsRight() {
-        boolean dirty = false;
+        boolean mosso = false;
          
-        if (moveCellsRightLoop())   dirty = true;
+        if (moveCellsRightLoop())   mosso = true;
          
         for (int y = 0; y < NUM_CELLE; y++) {
             for (int x = (NUM_CELLE - 1); x > 0; x--) {
                 int xx = x - 1;
-                dirty = combineCells(xx, y, x, y, dirty);
+                mosso = combineCells(xx, y, x, y, mosso);
             }
         }
          
-        if (moveCellsRightLoop())   dirty = true;
+        if (moveCellsRightLoop())   mosso = true;
          
-        return dirty;
+        return mosso;
     }
  
     private boolean moveCellsRightLoop() {
-        boolean dirty = false;
+        boolean mosso = false;
          
         for (int y = 0; y < NUM_CELLE; y++) {
-            //boolean rowDirty = false;
-            //do {
-                //rowDirty = false;
+            boolean rowDirty = false;
+            do {
+                rowDirty = false;
                 for (int x = (NUM_CELLE - 1); x > 0; x--) {
                     int xx = x - 1;
                     boolean cellDirty = moveCell(xx, y, x, y);
                     if (cellDirty) {
-                        //rowDirty = true;
-                        dirty = true;
+                        rowDirty = true;
+                        mosso = true;
                     }
                 }
-            //} while (rowDirty);     
+            } while (rowDirty);     
         }
          
-        return dirty;
+        return mosso;
     }
      
-    private boolean combineCells(int x1, int y1, int x2, int y2,
-            boolean dirty) {
+    private boolean combineCells(int x1, int y1, int x2, int y2, boolean dirty) {
         if (!grid[x1][y1].isZeroValue()) {
             int value = grid[x1][y1].getValue();
             if (grid[x2][y2].getValue() == value) { //quindi posso unirle
@@ -360,15 +359,18 @@ public class Game2048Model {
     public int getCurrentCell() {
         return currentCell;
     }
- 
+    
+    
     public boolean puoiMuovere() {
         return puoi_muovere;
     }
  
     public void setPuoiMuovere(boolean puoi_muovere) {
         this.puoi_muovere = puoi_muovere;
+        System.out.println("Modificata");
     }
- 
+    
+    
     public Dimension getPreferredSize() {
         int width = NUM_CELLE * Cell.getCellWidth() + SPAZIATURA_CELLE * 5;
         return new Dimension(width, width);

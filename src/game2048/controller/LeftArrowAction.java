@@ -32,14 +32,21 @@ public class LeftArrowAction extends AbstractAction {
             if (model.moveCellsLeft()) {
                 if (model.isGameOver()) {
                     model.setPuoiMuovere(false);
+                    System.out.println("CIAO");
+
                 } else {
-                    model.addNewCell();
-                     
-                    frame.repaintGridPanel();
-                    frame.updateScorePanel();
+                    addNewCell();
+
                 }
             }
         }
+    }
+    
+     private void addNewCell() {
+        model.addNewCell();
+         
+        frame.repaintGridPanel();
+        frame.updateScorePanel();
     }
  
 }

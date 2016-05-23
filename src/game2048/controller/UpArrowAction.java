@@ -31,7 +31,8 @@ public class UpArrowAction extends AbstractAction {
         if (model.puoiMuovere()) {
             if (model.moveCellsUp()) {
                 if (model.isGameOver()) {
-                    model.setPuoiMuovere(false); // va false solo in questo caso, quando è gameOver
+                    model.setPuoiMuovere(false);
+                    System.out.println("CIAO");
                 } else {
                     addNewCell();
                 }

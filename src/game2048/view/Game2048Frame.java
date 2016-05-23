@@ -5,7 +5,6 @@
  */
 package game2048.view;
 
-
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -63,7 +62,7 @@ public class Game2048Frame {
         frame.setTitle("2048");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setPreferredSize(new Dimension(600, 370)); //dimensioni finestra
-        frame.setResizable(false); //non modificabili
+        //frame.setResizable(false); //non modificabili
         
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -137,6 +136,7 @@ public class Game2048Frame {
     public void repaintGridPanel() {
         gridPanel.repaint();
     }
+    
  
     public void updateScorePanel() {
         scorePanel.updatePartControl();

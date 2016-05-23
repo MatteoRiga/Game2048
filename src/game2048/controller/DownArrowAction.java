@@ -31,15 +31,21 @@ public class DownArrowAction extends AbstractAction {
         if (model.puoiMuovere()) {
             if (model.moveCellsDown()) {
                 if (model.isGameOver()) {
-                    model.setPuoiMuovere(false);
+                    model.setPuoiMuovere(false); //si potrebbe togliere
+                    System.out.println("CIAO"); // 
                 } else {
-                    model.addNewCell();
+                    addNewCell();
                  
-                    frame.repaintGridPanel();
-                    frame.updateScorePanel();
                 }
             }
         }
+    }
+    
+     private void addNewCell() {
+        model.addNewCell();
+         
+        frame.repaintGridPanel();
+        frame.updateScorePanel();
     }
  
 }

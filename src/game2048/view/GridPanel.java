@@ -38,7 +38,11 @@ public class GridPanel extends JPanel {
         //se la griglia è piena e non posso più muovere caselle
         //disegno il gameOver
         if (model.isGameOver()) {
+            model.setPuoiMuovere(false);
             g.drawImage(image.getImage(), 0, 0, null);
         }
     }
+    
+    
+    
 }

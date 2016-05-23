@@ -33,14 +33,20 @@ public class RightArrowAction extends AbstractAction {
             if (model.moveCellsRight()) {
                 if (model.isGameOver()) {
                     model.setPuoiMuovere(false);
+                    System.out.println("CIAO");
                 } else {
-                    model.addNewCell();
-                     
-                    frame.repaintGridPanel();
-                    frame.updateScorePanel();
+                    addNewCell();
+
                 }
             }
         }
+    }
+    
+     private void addNewCell() {
+        model.addNewCell();
+         
+        frame.repaintGridPanel();
+        frame.updateScorePanel();
     }
  
 }
