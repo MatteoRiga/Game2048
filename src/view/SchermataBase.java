@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game2048.view;
+package view;
 
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
@@ -16,66 +16,66 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import game2048.controller.UpArrowAction;
-import game2048.controller.DownArrowAction;
-import game2048.controller.LeftArrowAction;
-import game2048.controller.RightArrowAction;
-import game2048.model.Game2048Model;
+import controller.AzioneFrecciaSu;
+import controller.AzioneFrecciaGiu;
+import controller.AzioneFrecciaSx;
+import controller.AzioneFrecciaDx;
+import model.ModelloGioco;
 
-import game2048.properties.ScoreManager;
+import scores.ScoreManager;
 import java.awt.Color;
 
 import java.awt.Dimension;
 
 
 //rappresenta l'intera finestra di gioco
-public class Game2048Frame {
+public class SchermataBase {
      
-    private ControlPanel controlPanel;
+    private StartPanel startPanel;
      
-    private Game2048Model model;
+    private ModelloGioco modello;
      
-    private GridPanel gridPanel;
+    private GrigliaPanel grigliaPanel;
          
     private ScoreManager scoreManager;
      
     private JFrame frame;
      
-    private ScorePanel scorePanel;
+    private PunteggioPanel punteggioPanel;
     
 
      
-    public Game2048Frame(Game2048Model model) {
-        this.model = model;
+    public SchermataBase(ModelloGioco model) {
+        this.modello = model;
         this.scoreManager = new ScoreManager(model);
         this.scoreManager.loadGame();
         
-        createPartControl();
+        inizializza();
     }
  
-    private void createPartControl() {
-        gridPanel = new GridPanel(model);
-        scorePanel = new ScorePanel(model);
-        controlPanel = new ControlPanel(this, model);
+    private void inizializza() {
+        grigliaPanel = new GrigliaPanel(modello);
+        punteggioPanel = new PunteggioPanel(modello);
+        startPanel = new StartPanel(this, modello);
          
         frame = new JFrame();
         frame.setTitle("2048");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setPreferredSize(new Dimension(600, 370)); //dimensioni finestra
-        //frame.setResizable(false); //non modificabili
+        frame.setResizable(false); //non modificabili
         
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
-                exitProcedure();
+                esci();
             }
         });
          
-        setKeyBindings();
+        inizializza_bind_pulsanti();
  
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new FlowLayout());
-        mainPanel.add(gridPanel);   
+        mainPanel.add(grigliaPanel);   
         mainPanel.add(createSidePanel());
  
         frame.add(mainPanel);
@@ -87,59 +87,58 @@ public class Game2048Frame {
     private JPanel createSidePanel() {
         JPanel sidePanel = new JPanel();
         
-        sidePanel.setLayout(new BoxLayout(sidePanel, 
-                BoxLayout.PAGE_AXIS));
-        sidePanel.add(scorePanel.getPanel());
+        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.PAGE_AXIS));
+        sidePanel.add(punteggioPanel.getPanel());
         sidePanel.add(Box.createVerticalStrut(30));
-        sidePanel.add(controlPanel.getPanel());
+        sidePanel.add(startPanel.getPanel());
         sidePanel.setBackground(Color.ORANGE);//TOGLIEREEEE
         return sidePanel;
     }
      
-    private void setKeyBindings() { 
+    private void inizializza_bind_pulsanti() { 
         //permette di fare un Bind tra un evento di input e un oggetto
-        InputMap inputMap = gridPanel.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+        InputMap inputMap = grigliaPanel.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
         //prima faccio con WHEN_IN_FOCUSED_WINDOW che ha id=2, quindi reperibile da WASD
         
-        inputMap.put(KeyStroke.getKeyStroke("W"), "FRECCIA_UP");
-        inputMap.put(KeyStroke.getKeyStroke("S"), "FRECCIA_DW");
+        inputMap.put(KeyStroke.getKeyStroke("W"), "FRECCIA_SU");
+        inputMap.put(KeyStroke.getKeyStroke("S"), "FRECCIA_GIU");
         inputMap.put(KeyStroke.getKeyStroke("A"), "FRECCIA_SX");
         inputMap.put(KeyStroke.getKeyStroke("D"), "FRECCIA_DX");
          
-        inputMap.put(KeyStroke.getKeyStroke("UP"), "FRECCIA_UP");
-        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "FRECCIA_DW");
+        inputMap.put(KeyStroke.getKeyStroke("UP"), "FRECCIA_SU");
+        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "FRECCIA_GIU");
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "FRECCIA_SX");
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "FRECCIA_DX");
          
-        inputMap = gridPanel.getInputMap(JPanel.WHEN_FOCUSED);
+        inputMap = grigliaPanel.getInputMap(JPanel.WHEN_FOCUSED);
         //poi faccio con WHEN_FOCUSED che ha id=0, quindi reperibile da UP,DW,SX,DX
 
         inputMap.put(KeyStroke.getKeyStroke("UP"), "FRECCIA_UP");
-        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "FRECCIA_DW");
+        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "FRECCIA_GIU");
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "FRECCIA_SX");
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "FRECCIA_DX");
  
         
-        gridPanel.getActionMap().put("FRECCIA_UP",new UpArrowAction(this, model));
-        gridPanel.getActionMap().put("FRECCIA_DW", new DownArrowAction(this, model));
-        gridPanel.getActionMap().put("FRECCIA_SX", new LeftArrowAction(this, model));
-        gridPanel.getActionMap().put("FRECCIA_DX", new RightArrowAction(this, model));
+        grigliaPanel.getActionMap().put("FRECCIA_SU",new AzioneFrecciaSu(this, modello));
+        grigliaPanel.getActionMap().put("FRECCIA_GIU", new AzioneFrecciaGiu(this, modello));
+        grigliaPanel.getActionMap().put("FRECCIA_SX", new AzioneFrecciaSx(this, modello));
+        grigliaPanel.getActionMap().put("FRECCIA_DX", new AzioneFrecciaDx(this, modello));
     }
     
-    public void exitProcedure() {
-        model.setHighScores();
+    public void esci() {
+        modello.imposta_punteggio();
         scoreManager.saveGame();
         frame.dispose();
         System.exit(0);
     }
      
-    public void repaintGridPanel() {
-        gridPanel.repaint();
+    public void repaintGrigliaPanel() {
+        grigliaPanel.repaint();
     }
     
  
-    public void updateScorePanel() {
-        scorePanel.updatePartControl();
+    public void aggiornaPunteggioPanel() {
+        punteggioPanel.aggiornaPanel();
     }
     
 }

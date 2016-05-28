@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game2048.properties;
+package scores;
 
-import game2048.model.Game2048Model;
+import model.ModelloGioco;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,19 +17,19 @@ import java.io.InputStreamReader;
 public class ScoreManager {
 
 	// CURRENT SCORES
-	private int highScore;
-	private int highCell;
+	private int miglior_punteggio;
+	private int miglior_casella;
 
 	// File
-	private String filePath;
+	private String path_file;
 	private String temp;
 
-        private Game2048Model model;
+        private ModelloGioco model;
         
-	public ScoreManager(Game2048Model model) {
+	public ScoreManager(ModelloGioco model) {
             
 		try {
-			filePath = new File("").getAbsolutePath();
+			path_file = new File("").getAbsolutePath();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -40,19 +40,19 @@ public class ScoreManager {
          
        //posso togliere
 	public void reset() {
-		File f = new File(filePath, temp);
+		File f = new File(path_file, temp);
 		if (f.isFile()) {
 			f.delete();
 		}
-		highScore = 0;
-                highCell = 0;
+		miglior_punteggio = 0;
+                miglior_casella = 0;
 
 	}
 
 	private void createFile() {
 		FileWriter output = null;
 		try {
-			File f = new File(filePath, temp);
+			File f = new File(path_file, temp);
 			output = new FileWriter(f);
 			BufferedWriter writer = new BufferedWriter(output);
 			writer.write("" + 0);
@@ -67,12 +67,12 @@ public class ScoreManager {
 	public void saveGame() {
 		FileWriter output = null;
 		try {
-			File f = new File(filePath, temp);
+			File f = new File(path_file, temp);
 			output = new FileWriter(f);
 			BufferedWriter writer = new BufferedWriter(output);
-			writer.write("" + Integer.toString(model.getHighScore()));
+			writer.write("" + Integer.toString(model.get_miglior_punteggio()));
 			writer.newLine();
-			writer.write("" + Integer.toString(model.getHighCell()));
+			writer.write("" + Integer.toString(model.get_miglior_casella()));
 			writer.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,35 +82,35 @@ public class ScoreManager {
 
 	public void loadGame() {
 		try {
-			File f = new File(filePath, temp);
+			File f = new File(path_file, temp);
 
 			if (!f.isFile()) {
 				createFile();
 			}
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
-			highScore = Integer.parseInt(reader.readLine());
-			highCell = Integer.parseInt(reader.readLine());
-                        model.setHighScore(highScore);
-                        model.setHighCell(highCell);
+			miglior_punteggio = Integer.parseInt(reader.readLine());
+			miglior_casella = Integer.parseInt(reader.readLine());
+                        model.set_miglior_punteggio(miglior_punteggio);
+                        model.set_miglior_casella(miglior_casella);
 			reader.close();
 		} catch (IOException | NumberFormatException e) {
 		}
 	}
 
 	public int getCurrentHighScore() {
-		return highScore;
+		return miglior_punteggio;
 	}
 
 	public void setCurrentHighScore(int currentScore) {
-		this.highScore = currentScore;
+		this.miglior_punteggio = currentScore;
 	}
 
 	public int getCurrentHighCell() {
-		return highCell;
+		return miglior_casella;
 	}
 
 	public void setCurrentHighCell(int currentTopScore) {
-		this.highCell = currentTopScore;
+		this.miglior_casella = currentTopScore;
 	}
 
 

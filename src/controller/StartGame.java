@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game2048.controller;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import game2048.model.Game2048Model;
-import game2048.view.Game2048Frame;
+import model.ModelloGioco;
+import view.SchermataBase;
 
-public class StartGameActionListener implements ActionListener {
+public class StartGame implements ActionListener {
      
-    private Game2048Frame frame;
+    private SchermataBase finestra;
      
-    private Game2048Model model;
+    private ModelloGioco modello;
      
-    public StartGameActionListener(Game2048Frame frame, 
-            Game2048Model model) {
-        this.frame = frame;
-        this.model = model;
+    public StartGame(SchermataBase frame, 
+            ModelloGioco model) {
+        this.finestra = frame;
+        this.modello = model;
     }
  
     //quando implemento l'interfaccia -ActionListener- il metodo che immplementà 
@@ -31,14 +31,14 @@ public class StartGameActionListener implements ActionListener {
     //il gioco
     @Override
     public void actionPerformed(ActionEvent event) {
-        model.setHighScores();
-        model.initializeGrid();
-        model.setPuoiMuovere(true); // va a true appena clicco start
-        model.addNewCell();
-        model.addNewCell();
+        modello.imposta_punteggio();
+        modello.inizializza_griglia();
+        modello.set_puoi_muovere(true); // va a true appena clicco start
+        modello.aggiungi_casella();
+        modello.aggiungi_casella();
          
-        frame.repaintGridPanel();
-        frame.updateScorePanel();
+        finestra.repaintGrigliaPanel();
+        finestra.aggiornaPunteggioPanel();
     }
  
 }

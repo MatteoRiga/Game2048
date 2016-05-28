@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game2048.view;
+package view;
 
 
 import java.awt.Component;
@@ -15,33 +15,33 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JPanel;
  
-import game2048.controller.StartGameActionListener;
-import game2048.model.Game2048Model;
+import controller.StartGame;
+import model.ModelloGioco;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
  
-public class ControlPanel {
+public class StartPanel {
     
     //stabilisce lo spazio del che ci deve essere tra i lati del pannello dei punteggi
     private static final Insets regularInsets   = 
             new Insets(10, 10, 0, 10);
      
-    private Game2048Frame frame;
+    private SchermataBase frame;
      
-    private Game2048Model model;
+    private ModelloGioco model;
      
     private JPanel panel;
  
     //per la creazione del pulsante start
-    public ControlPanel(Game2048Frame frame, Game2048Model model) {
+    public StartPanel(SchermataBase frame, ModelloGioco model) {
         this.frame = frame;
         this.model = model;
-        createPartControl();
+        inizializza();
     }
      
-    private void createPartControl() {
-        StartGameActionListener listener = new StartGameActionListener(frame, model);
+    private void inizializza() {
+        StartGame listener = new StartGame(frame, model);
         
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());

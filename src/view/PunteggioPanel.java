@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game2048.view;
+package view;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -16,23 +16,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
  
-import game2048.model.Game2048Model;
+import model.ModelloGioco;
 import java.awt.Color;
  
-public class ScorePanel {
+public class PunteggioPanel {
      
-    private static final Insets margini   = 
-            new Insets(10, 10, 10, 10);
+    private static final Insets margini   = new Insets(10, 10, 10, 10);
      
-    private static final NumberFormat nf =
-            NumberFormat.getInstance();
+    private static final NumberFormat nf = NumberFormat.getInstance();
      
-    private Game2048Model model;
+    private ModelloGioco modello;
      
     private JPanel panel;
      
     //li dichiaro qui questi, perchè sono usati sia da 
-    //createPartControl(), sia da updatePartControl();
+    //creaPanel(), sia da aggiornaPanel();
     private JTextField highScoreField;
     private JTextField highCellField;
     private JTextField currentScoreField;
@@ -40,13 +38,13 @@ public class ScorePanel {
     //----------------------------------
     
     
-    public ScorePanel(Game2048Model model) {
-        this.model = model;
-        createPartControl();
-        updatePartControl();
+    public PunteggioPanel(ModelloGioco model) {
+        this.modello = model;
+        creaPannel();
+        aggiornaPanel();
     }
      
-    private void createPartControl() {
+    private void creaPannel() {
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBackground(Color.RED); //TOGLIEREEEE
@@ -146,11 +144,11 @@ public class ScorePanel {
      
     
     
-    public void updatePartControl() {
-        highScoreField.setText(nf.format(model.getHighScore()));
-        highCellField.setText(nf.format(model.getHighCell()));
-        currentScoreField.setText(nf.format(model.getCurrentScore()));
-        currentCellField.setText(nf.format(model.getCurrentCell()));
+    public void aggiornaPanel() {
+        highScoreField.setText(nf.format(modello.get_miglior_punteggio()));
+        highCellField.setText(nf.format(modello.get_miglior_casella()));
+        currentScoreField.setText(nf.format(modello.get_miglior_punteggio_corrente()));
+        currentCellField.setText(nf.format(modello.get_miglior_casella_corrente()));
     }
  
     public JPanel getPanel() {

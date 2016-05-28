@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game2048.view;
+package view;
 
-import game2048.model.Game2048Model;
+import model.ModelloGioco;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,23 +15,23 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import game2048.model.Game2048Model;
+import model.ModelloGioco;
 
  
 public class GameOverImage implements Runnable {
      
     private BufferedImage image;
  
-    private Game2048Model model;
+    private ModelloGioco model;
      
-    public GameOverImage(Game2048Model model) {
+    public GameOverImage(ModelloGioco model) {
         this.model = model;
     }
  
     @Override
     public void run() {
         String s = "Game Over";
-        Dimension d = model.getPreferredSize();
+        Dimension d = model.get_dimesione_griglia();
         image = new BufferedImage(d.width, d.height, 
                 BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = image.createGraphics();
