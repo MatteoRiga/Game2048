@@ -18,19 +18,3 @@ public class Gioco2048 {
     }
  
 }
-
-/*sennò usa questa che è uguale*/
-/*
-public class Gioco2048 implements Runnable {
- 
-    @Override
-    public void run() {
-        new Game2048Frame(new Game2048Model());
-    }
-     
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Gioco2048());
-    }
- 
-}
-*/

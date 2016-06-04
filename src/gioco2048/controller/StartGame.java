@@ -16,13 +16,7 @@ public class StartGame implements ActionListener {
         this.schermata_base = frame;
         this.modello_gioco = model;
     }
- 
-    //quando implemento l'interfaccia -ActionListener- il metodo che immplementà 
-    //l'interfaccia, richiamerà in automatico il meotodo -actionPerformed-
-    //infatti il costruttore si preoccuperà di istanziare le classi necessarie ovvero
-    //Game2048Frame e Game2048Model e l'azione del metodo actionPerformed
-    //permetterà di eseguire i metodi ad esse collegate, necessari per inizializzare 
-    //il gioco
+
     @Override
     public void actionPerformed(ActionEvent event) {
         modello_gioco.imposta_punteggio();

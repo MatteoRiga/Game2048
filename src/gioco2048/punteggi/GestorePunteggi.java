@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 
 public class GestorePunteggi {
 
-	// blabla
 	private int miglior_punteggio;
 	private int miglior_casella;
 
@@ -33,18 +32,6 @@ public class GestorePunteggi {
 		this.modello_gioco = model;
 	}
          
-       //posso togliere
-        /*
-	public void reset() {
-		File f = new File(path_file, temp);
-		if (f.isFile()) {
-			f.delete();
-		}
-		miglior_punteggio = 0;
-                miglior_casella = 0;
-
-	}
-        */
 	private void crea_file() {
 		FileWriter output = null;
 		try {

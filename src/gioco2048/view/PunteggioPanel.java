@@ -15,19 +15,16 @@ import java.awt.Color;
 
 import gioco2048.model.ModelloGioco;
 
- 
 public class PunteggioPanel {
      
-    private static final Insets margini   = new Insets(20, 20, 20, 20); // prima era 10, 10, 10, 10
+    private static final Insets margini   = new Insets(20, 20, 20, 20); 
      
     private static final NumberFormat number_format = NumberFormat.getInstance();
      
     private ModelloGioco modello_gioco;
      
     private JPanel panel;
-     
-    //li dichiaro qui questi, perchè sono usati sia da 
-    //creaPanel(), sia da aggiorna_punteggio_panel();
+    
     private JTextField miglior_punteggio_field;
     private JTextField miglior_casella_field;
     private JTextField miglior_punteggio_corrente_field;
@@ -43,8 +40,6 @@ public class PunteggioPanel {
     private void crea_punteggio_panel() {
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(Color.RED); //TOGLIEREEEE
-
          
         //MIGLIOR_PUNTEGGIO_LABEL
         //----------------------------------
@@ -73,7 +68,7 @@ public class PunteggioPanel {
                            GridBagConstraints.NONE);
         //----------------------------------
         
-        //HIGH_CELL_LABEL
+        //MIGLIOR_CELLA_LABEL
         //----------------------------------
         JLabel miglior_casella_label = new JLabel("Miglior Casella:");       
         AggiungiComponente(panel, 
@@ -101,7 +96,7 @@ public class PunteggioPanel {
                            GridBagConstraints.NONE);
         //----------------------------------
          
-        //CURRENT_SCORE_LABEL
+        //MIGLIOR_PUNTEGGIO_CORRENTE_LABEL
         //----------------------------------
         JLabel miglior_punteggio_corrente_label = new JLabel("Punteggio Corrente:");
         AggiungiComponente(panel, 
@@ -128,7 +123,7 @@ public class PunteggioPanel {
                 GridBagConstraints.NONE);
         //----------------------------------
          
-        //CURRENT_CELL_LABEL
+        //MIGLIOR_CASELLA_CORRENTE_LABEL
         //----------------------------------
         JLabel miglior_casella_corrente = new JLabel("Miglior Casella:");       
         AggiungiComponente(panel, 

@@ -11,10 +11,8 @@ import java.awt.image.BufferedImage;
  
 public final class Casella {
      
-    //larghezza grafica celle
     private static final int LARGHEZZA_CASELLA = 75; //prima era 120
      
-    //valore della cella
     private int valore;
      
     private Point posizione_casella;
@@ -35,29 +33,20 @@ public final class Casella {
         this.valore = value;
     }
      
-    //controllo se la cella corrente ha valore 0
     public boolean is_valore_zero() {
         if(valore==0)
             return true;
         else
             return false;
-        //le righe sopra possono essere scritte anche nella forma contratta
-        //return (valore == 0);
     }
      
     public void set_posizione_casella(int x, int y) {
         this.posizione_casella = new Point(x,y);
     }
   
- 
-    //disegna una singola casella
     public void disegna_casella(Graphics g) {
         if (valore == 0) {
             g.setColor(new Color(ColorUtil.color_vuota)); //prima era Color.DARK_GREY
-            /*g.fillRect( //draw the outline of the specific rectangle
-                    posizione_casella.x, posizione_casella.y, 
-                    LARGHEZZA_CASELLA, LARGHEZZA_CASELLA);
-            */
             g.fillRoundRect(posizione_casella.x, posizione_casella.y, LARGHEZZA_CASELLA, LARGHEZZA_CASELLA, 15, 15); // per contenitori celle stondate
         } else {   
             //Font font = g.getFont();
@@ -70,7 +59,6 @@ public final class Casella {
         }
     }
     
-    //crea una cella
     private BufferedImage crea_immagine(Font font, FontRenderContext frc, int width, String s) { 
  
         Font largeFont = font.deriveFont((float) (width / 4));

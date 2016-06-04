@@ -24,8 +24,7 @@ public class AzioneFrecciaGiu extends AbstractAction {
         if (modello_gioco.puoi_muovere()) {
             if (modello_gioco.muovi_caselle_giu()) {
                 if (modello_gioco.game_over()) {
-                    modello_gioco.set_puoi_muovere(false); //si potrebbe togliere
-                    System.out.println("CIAO"); // 
+                    modello_gioco.set_puoi_muovere(false); 
                 } else {
                     aggiungiCasella();       
                 }

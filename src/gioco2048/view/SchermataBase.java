@@ -20,12 +20,8 @@ import gioco2048.model.ModelloGioco;
 import gioco2048.punteggi.GestorePunteggi;
 import java.awt.Color;
 
-
-
 import java.awt.Dimension;
 
-
-//rappresenta l'intera finestra di gioco
 public class SchermataBase {
     
     private ModelloGioco modello_gioco;
@@ -37,13 +33,10 @@ public class SchermataBase {
     private GestorePunteggi gestore_punteggi;
     
     private StartPanel start_panel;
-        
-           
+       
     private JFrame frame;
      
     
-
-     
     public SchermataBase(ModelloGioco model) {
         this.modello_gioco = model;
         this.gestore_punteggi = new GestorePunteggi(model);
@@ -60,9 +53,8 @@ public class SchermataBase {
         frame = new JFrame();
         frame.setTitle("2048");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(630, 370)); //dimensioni finestra
-        
-        frame.setResizable(false); //non modificabili
+        frame.setPreferredSize(new Dimension(630, 370));  
+        frame.setResizable(false);
         
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -77,11 +69,10 @@ public class SchermataBase {
         panel_principale.setLayout(new FlowLayout());
         panel_principale.add(griglia_panel);   
         panel_principale.add(crea_panel_laterale());
-        //mainPanel.add(start_panel.getPanel());// aggiunto qui per mettere sotto
         
         frame.add(panel_principale);
         frame.setLocationByPlatform(true);
-        frame.pack();//prende la dimensione in base ai sottocomponenti
+        frame.pack();
         frame.setVisible(true);
     }
  
@@ -89,9 +80,9 @@ public class SchermataBase {
         JPanel panel_laterale = new JPanel();
         panel_laterale.setLayout(new BoxLayout(panel_laterale, BoxLayout.PAGE_AXIS));
         panel_laterale.add(punteggio_panel.getPanel());
-        panel_laterale.add(Box.createVerticalStrut(30));//dimensione dell'arancione, spazio tra i componenti
-        panel_laterale.add(start_panel.getPanel()); // tolto da qui per mettere sotto
-        panel_laterale.setBackground(Color.ORANGE);//TOGLIEREEEE 
+        panel_laterale.add(Box.createVerticalStrut(30));
+        panel_laterale.add(start_panel.getPanel());
+        panel_laterale.setBackground(Color.ORANGE);
         return panel_laterale;
     }
      
@@ -118,7 +109,6 @@ public class SchermataBase {
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "FRECCIA_SX");
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "FRECCIA_DX");
  
-        
         griglia_panel.getActionMap().put("FRECCIA_SU",new AzioneFrecciaSu(this, modello_gioco));
         griglia_panel.getActionMap().put("FRECCIA_GIU", new AzioneFrecciaGiu(this, modello_gioco));
         griglia_panel.getActionMap().put("FRECCIA_SX", new AzioneFrecciaSx(this, modello_gioco));
@@ -136,7 +126,6 @@ public class SchermataBase {
         griglia_panel.repaint();
     }
     
- 
     public void aggiorna_punteggio_panel() {
         punteggio_panel.aggiorna_punteggio_panel();
     }

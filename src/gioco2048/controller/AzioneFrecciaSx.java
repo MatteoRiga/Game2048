@@ -24,8 +24,6 @@ public class AzioneFrecciaSx extends AbstractAction {
             if (modello_gioco.muovi_caselle_sx()) {
                 if (modello_gioco.game_over()) {
                     modello_gioco.set_puoi_muovere(false);
-                    System.out.println("CIAO");
-
                 } else {
                     aggiungiCasella();
 

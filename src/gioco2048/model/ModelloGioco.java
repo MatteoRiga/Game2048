@@ -5,21 +5,17 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Random;
  
-//implementa il gioco vero e proprio
 public class ModelloGioco {
      
-    //attivare a true per avere il debug del gioco
-    private static final boolean DEBUG = false;
-     
-    private static final int SPAZIATURA_CASELLE = 6; //spazio fra le celle ->prima era 16
-    private static final int NUM_CASELLE = 4; //numero di celle
+    private static final int SPAZIATURA_CASELLE = 6; 
+    private static final int NUM_CASELLE = 4; 
      
     private boolean puoi_muovere;
      
-    private int miglior_punteggio; //punteggio più alto
-    private int miglior_casella; //casella più alta
-    private int miglior_punteggio_corrente; //punteggio più alto corrente
-    private int miglior_casella_corrente; //casella più alta corrente
+    private int miglior_punteggio; 
+    private int miglior_casella; 
+    private int miglior_punteggio_corrente; 
+    private int miglior_casella_corrente; 
      
     private Casella[][] griglia;
      
@@ -104,9 +100,6 @@ public class ModelloGioco {
             if (griglia[x][y].is_valore_zero()) {
                 griglia[x][y].set_valore(value);
                 locationFound = true;
-                if (DEBUG) {
-                    System.out.println(displayAddCell(x, y));
-                }
             }
         }
          
@@ -186,9 +179,9 @@ public class ModelloGioco {
             boolean continua = false;
             do {
                 continua = false;
-                for (int y = NUM_CASELLE - 1; y > 0; y--) {
-                    int yy = y - 1;
-                    boolean casella_spostata = muovi_casella(x, yy, x, y);
+                for (int y = 0; y < NUM_CASELLE - 1; y++) {
+                    int yy = y + 1;
+                    boolean casella_spostata = muovi_casella(x, y, x, yy);
                     if (casella_spostata) {
                         continua = true;
                         mosso = true;
@@ -280,10 +273,10 @@ public class ModelloGioco {
         if (!griglia[x1][y1].is_valore_zero()) {
             int value = griglia[x1][y1].get_valore();
             if (griglia[x2][y2].get_valore() == value) { //quindi posso unirle
-                int newValue = value + value;
-                griglia[x2][y2].set_valore(newValue);
+                int nuovo_valore = value + value;
+                griglia[x2][y2].set_valore(nuovo_valore);
                 griglia[x1][y1].set_valore(0);
-                aggiorna_punteggio(newValue, newValue);
+                aggiorna_punteggio(nuovo_valore, nuovo_valore);
                 mosso = true;
             }
         }
@@ -293,30 +286,12 @@ public class ModelloGioco {
     private boolean muovi_casella(int x1, int y1, int x2, int y2) {
         boolean muovi = false;
         if (griglia[x1][y1].is_valore_zero()==false && (griglia[x2][y2].is_valore_zero()==true)) {
-            if (DEBUG) {
-                System.out.println(displayMoveCell(x1, y1, x2, y2));
-            }
             int value = griglia[x1][y1].get_valore();
             griglia[x2][y2].set_valore(value);
             griglia[x1][y1].set_valore(0);
             muovi = true;
         }
         return muovi;
-    }
-     
-    private String displayMoveCell(int x1, int y1, int x2, int y2) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Moving cell [");
-        builder.append(x1);
-        builder.append("][");
-        builder.append(y1);
-        builder.append("] to [");
-        builder.append(x2);
-        builder.append("][");
-        builder.append(y2);
-        builder.append("].");
-         
-        return builder.toString();
     }
     
     public void imposta_punteggio() {
@@ -370,7 +345,6 @@ public class ModelloGioco {
  
     public void set_puoi_muovere(boolean puoi_muovere) {
         this.puoi_muovere = puoi_muovere;
-        System.out.println("Modificata");
     }
     
     public Dimension get_dimesione_griglia() {
@@ -378,15 +352,14 @@ public class ModelloGioco {
         return new Dimension(width, width);
     }
      
-    public void disegna_griglia(Graphics g) {//(ri-)disegna la l'intera griglia di gioco
+    public void disegna_griglia(Graphics g) {
         g.setColor(new Color(ColorUtil.color_griglia));
         Dimension d = get_dimesione_griglia();
         g.fillRect(0, 0, d.width, d.height);
-        //g.fillRoundRect(0, 0, d.width, d.height, 15, 15);
 
         for (int x = 0; x < NUM_CASELLE; x++) {
             for (int y = 0; y < NUM_CASELLE; y++) {
-                griglia[x][y].disegna_casella(g); //disegna la cella
+                griglia[x][y].disegna_casella(g); 
             }
         }
     }

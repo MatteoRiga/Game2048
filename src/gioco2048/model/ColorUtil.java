@@ -21,37 +21,37 @@ public class ColorUtil {
     private final static int color_oltre = 0x00000;
     
     public final static Color get_colore_casella(int valore) {
-     Color color = Color.WHITE;
+        Color color;
 
-     switch (valore) {
-         case 2:     color = new Color(ColorUtil.color_2);
-                     break;
-         case 4:     color = new Color(ColorUtil.color_4);
-                     break;
-         case 8:     color = new Color(ColorUtil.color_8);
-                     break;
-         case 16:    color = new Color(ColorUtil.color_16);
-                     break;
-         case 32:    color = new Color(ColorUtil.color_32);
-                     break;
-         case 64:    color = new Color(ColorUtil.color_64);
-                     break;
-         case 128:   color = new Color(ColorUtil.color_128);
-                     break;
-         case 256:   color = new Color(ColorUtil.color_256);
-                     break;
-         case 512:   color = new Color(ColorUtil.color_512);
-                     break;
-         case 1024:  color = new Color(ColorUtil.color_1024);
-                     break;
-         case 2048:  color = new Color(ColorUtil.color_2048);
-                     break;
-         default:    color = new Color(ColorUtil.color_oltre);
-                     break;
-     }
+        switch (valore) {
+            case 2:     color = new Color(ColorUtil.color_2);
+                        break;
+            case 4:     color = new Color(ColorUtil.color_4);
+                        break;
+            case 8:     color = new Color(ColorUtil.color_8);
+                        break;
+            case 16:    color = new Color(ColorUtil.color_16);
+                        break;
+            case 32:    color = new Color(ColorUtil.color_32);
+                        break;
+            case 64:    color = new Color(ColorUtil.color_64);
+                        break;
+            case 128:   color = new Color(ColorUtil.color_128);
+                        break;
+            case 256:   color = new Color(ColorUtil.color_256);
+                        break;
+            case 512:   color = new Color(ColorUtil.color_512);
+                        break;
+            case 1024:  color = new Color(ColorUtil.color_1024);
+                        break;
+            case 2048:  color = new Color(ColorUtil.color_2048);
+                        break;
+            default:    color = new Color(ColorUtil.color_oltre);
+                        break;
+        }
 
-     return color;
-     }
+        return color;
+        }
      
     //PER COLORE VALORE DELLA CELLA
     public final static Color get_colore_testo(int valore) {
