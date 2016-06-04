@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
+package gioco2048.model;
 
 import java.awt.Color;
 
-/**
- *
- * @author Matteo
- */
 public class ColorUtil {
     
     public final static int color_griglia = 0xbbada0;
-    
     public final static int color_vuota = 0xcdc1b4;
+    
     private final static int color_2 = 0xeee4da;
     private final static int color_4 = 0xede0c8;
     private final static int color_8 = 0xf2b179;

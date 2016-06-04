@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Matteo/NetBeansProjects/2048/src/model/ModelloGioco.java</file>
-            <file>file:/Users/Matteo/NetBeansProjects/2048/src/controller/AzioneFrecciaGiu.java</file>
-            <file>file:/Users/Matteo/NetBeansProjects/2048/src/game2048/Game2048.java</file>
-            <file>file:/Users/Matteo/NetBeansProjects/2048/src/view/PunteggioPanel.java</file>
-            <file>file:/Users/Matteo/NetBeansProjects/2048/src/view/SchermataBase.java</file>
-            <file>file:/Users/Matteo/NetBeansProjects/2048/src/scores/ScoreManager.java</file>
+            <file>file:/Users/Matteo/NetBeansProjects/Gioco2048/src/gioco2048/view/StartPanel.java</file>
+            <file>file:/Users/Matteo/NetBeansProjects/Gioco2048/src/gioco2048/view/GrigliaPanel.java</file>
+            <file>file:/Users/Matteo/NetBeansProjects/Gioco2048/src/gioco2048/view/PunteggioPanel.java</file>
+            <file>file:/Users/Matteo/NetBeansProjects/Gioco2048/src/gioco2048/view/ImmagineGameOver.java</file>
+            <file>file:/Users/Matteo/NetBeansProjects/Gioco2048/src/gioco2048/controller/StartGame.java</file>
+            <file>file:/Users/Matteo/NetBeansProjects/Gioco2048/src/gioco2048/view/SchermataBase.java</file>
         </group>
     </open-files>
 </project-private>

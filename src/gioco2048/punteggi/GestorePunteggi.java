@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package scores;
+package gioco2048.punteggi;
 
-import model.ModelloGioco;
+import gioco2048.model.ModelloGioco;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,9 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ScoreManager {
+public class GestorePunteggi {
 
-	// CURRENT SCORES
+	// blabla
 	private int miglior_punteggio;
 	private int miglior_casella;
 
@@ -24,9 +19,9 @@ public class ScoreManager {
 	private String path_file;
 	private String temp;
 
-        private ModelloGioco model;
+        private ModelloGioco modello_gioco;
         
-	public ScoreManager(ModelloGioco model) {
+	public GestorePunteggi(ModelloGioco model) {
             
 		try {
 			path_file = new File("").getAbsolutePath();
@@ -35,10 +30,11 @@ public class ScoreManager {
 		}
 		temp = "TEMP.tmp";
 
-		this.model = model;
+		this.modello_gioco = model;
 	}
          
        //posso togliere
+        /*
 	public void reset() {
 		File f = new File(path_file, temp);
 		if (f.isFile()) {
@@ -48,8 +44,8 @@ public class ScoreManager {
                 miglior_casella = 0;
 
 	}
-
-	private void createFile() {
+        */
+	private void crea_file() {
 		FileWriter output = null;
 		try {
 			File f = new File(path_file, temp);
@@ -64,15 +60,15 @@ public class ScoreManager {
 		}
 	}
 
-	public void saveGame() {
+	public void salva_gioco() {
 		FileWriter output = null;
 		try {
 			File f = new File(path_file, temp);
 			output = new FileWriter(f);
 			BufferedWriter writer = new BufferedWriter(output);
-			writer.write("" + Integer.toString(model.get_miglior_punteggio()));
+			writer.write("" + Integer.toString(modello_gioco.get_miglior_punteggio()));
 			writer.newLine();
-			writer.write("" + Integer.toString(model.get_miglior_casella()));
+			writer.write("" + Integer.toString(modello_gioco.get_miglior_casella()));
 			writer.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,18 +76,18 @@ public class ScoreManager {
                 
 	}
 
-	public void loadGame() {
+	public void carica_gioco() {
 		try {
 			File f = new File(path_file, temp);
 
 			if (!f.isFile()) {
-				createFile();
+				crea_file();
 			}
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
 			miglior_punteggio = Integer.parseInt(reader.readLine());
 			miglior_casella = Integer.parseInt(reader.readLine());
-                        model.set_miglior_punteggio(miglior_punteggio);
-                        model.set_miglior_casella(miglior_casella);
+                        modello_gioco.set_miglior_punteggio(miglior_punteggio);
+                        modello_gioco.set_miglior_casella(miglior_casella);
 			reader.close();
 		} catch (IOException | NumberFormatException e) {
 		}

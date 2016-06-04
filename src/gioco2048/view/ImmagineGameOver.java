@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package view;
+package gioco2048.view;
 
-import model.ModelloGioco;
+import gioco2048.model.ModelloGioco;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,26 +10,26 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import model.ModelloGioco;
+import gioco2048.model.ModelloGioco;
 
  
-public class GameOverImage implements Runnable {
+public class ImmagineGameOver {
      
-    private BufferedImage image;
+    private BufferedImage immagine;
  
-    private ModelloGioco model;
+    private ModelloGioco modello_gioco;
      
-    public GameOverImage(ModelloGioco model) {
-        this.model = model;
+    public ImmagineGameOver(ModelloGioco model) {
+        this.modello_gioco = model;
+        disegna_game_over();
     }
  
-    @Override
-    public void run() {
-        String s = "Game Over";
-        Dimension d = model.get_dimesione_griglia();
-        image = new BufferedImage(d.width, d.height, 
+    private void disegna_game_over(){
+    String s = "Game Over";
+        Dimension d = modello_gioco.get_dimesione_griglia();
+        immagine = new BufferedImage(d.width, d.height, 
                 BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = image.createGraphics();
+        Graphics2D g = immagine.createGraphics();
  
         g.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.CLEAR));
@@ -67,7 +62,7 @@ public class GameOverImage implements Runnable {
     }
  
     public BufferedImage getImage() {
-        return image;
+        return immagine;
     }
  
 }

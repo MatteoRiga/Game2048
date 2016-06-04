@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
+package gioco2048.model;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,6 +24,8 @@ public class ModelloGioco {
     private Casella[][] griglia;
      
     private Random num_random;
+    
+    
      
     public ModelloGioco() {
         this.griglia = new Casella[NUM_CASELLE][NUM_CASELLE];
@@ -148,18 +145,18 @@ public class ModelloGioco {
         boolean mosso = false;
          
         for (int x = 0; x < NUM_CASELLE; x++) {
-            boolean columnDirty = false;
+            boolean continua = false;
             do {
-                columnDirty = false;
+                continua = false;
                 for (int y = 0; y < (NUM_CASELLE - 1); y++) {
                     int yy = y + 1;
-                    boolean cellDirty = muovi_casella(x, yy, x, y);
-                    if (cellDirty) {
-                        columnDirty = true;
+                    boolean casella_spostata = muovi_casella(x, yy, x, y);
+                    if (casella_spostata==true) {
+                        continua = true;
                         mosso = true;
                     }
                 }
-            } while (columnDirty);      
+            } while (continua==true);      
         }
          
         return mosso;
@@ -186,18 +183,18 @@ public class ModelloGioco {
         boolean mosso = false;
          
         for (int x = 0; x < NUM_CASELLE; x++) {
-            boolean columnDirty = false;
+            boolean continua = false;
             do {
-                columnDirty = false;
+                continua = false;
                 for (int y = NUM_CASELLE - 1; y > 0; y--) {
                     int yy = y - 1;
-                    boolean cellDirty = muovi_casella(x, yy, x, y);
-                    if (cellDirty) {
-                        columnDirty = true;
+                    boolean casella_spostata = muovi_casella(x, yy, x, y);
+                    if (casella_spostata) {
+                        continua = true;
                         mosso = true;
                     }
                 }
-            } while (columnDirty==true);      
+            } while (continua==true);      
         }
          
         return mosso;
@@ -224,18 +221,18 @@ public class ModelloGioco {
         boolean mosso = false;
          
         for (int y = 0; y < NUM_CASELLE; y++) {
-            boolean rowDirty = false;
+            boolean continua = false;
             do {
-                rowDirty = false;
+                continua = false;
                 for (int x = 0; x < (NUM_CASELLE - 1); x++) {
                     int xx = x + 1;
-                    boolean cellDirty = muovi_casella(xx, y, x, y);
-                    if (cellDirty) {
-                        rowDirty = true;
+                    boolean casella_spostata = muovi_casella(xx, y, x, y);
+                    if (casella_spostata) {
+                        continua = true;
                         mosso = true;
                     }
                 }
-            } while (rowDirty); //fintanto che non ho due celle con val !=0 vicine 
+            } while (continua); //fintanto sposto qualcosa
         }
          
         return mosso;
@@ -247,9 +244,9 @@ public class ModelloGioco {
         if (loop_dx())   mosso = true;
          
         for (int y = 0; y < NUM_CASELLE; y++) {
-            for (int x = (NUM_CASELLE - 1); x > 0; x--) {
-                int xx = x - 1;
-                mosso = combina_caselle(xx, y, x, y, mosso);
+            for (int x = 0; x < (NUM_CASELLE - 1); x++) {
+                int xx = x + 1;
+                mosso = combina_caselle(x, y, xx, y, mosso);
             }
         }
          
@@ -262,18 +259,18 @@ public class ModelloGioco {
         boolean mosso = false;
          
         for (int y = 0; y < NUM_CASELLE; y++) {
-            boolean rowDirty = false;
+            boolean continua = false;
             do {
-                rowDirty = false;
-                for (int x = (NUM_CASELLE - 1); x > 0; x--) {
-                    int xx = x - 1;
-                    boolean cellDirty = muovi_casella(xx, y, x, y);
-                    if (cellDirty) {
-                        rowDirty = true;
+                continua = false;
+                for (int x = 0; x < (NUM_CASELLE - 1); x++) {
+                    int xx = x + 1;
+                    boolean casella_spostata = muovi_casella(x, y, xx, y);
+                    if (casella_spostata) {
+                        continua = true;
                         mosso = true;
                     }
                 }
-            } while (rowDirty);     
+            } while (continua);     
         }
          
         return mosso;
