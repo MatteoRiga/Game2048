@@ -106,17 +106,6 @@ public class ModelloGioco {
         aggiorna_punteggio(0, value);
     }
      
-    private String displayAddCell(int x, int y) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Cell added at [");
-        builder.append(x);
-        builder.append("][");
-        builder.append(y);
-        builder.append("].");
-         
-        return builder.toString();
-    }
-     
     public boolean muovi_caselle_su() {
         boolean mosso = false;
          

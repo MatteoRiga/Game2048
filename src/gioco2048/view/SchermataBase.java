@@ -34,7 +34,7 @@ public class SchermataBase {
     
     private StartPanel start_panel;
        
-    private JFrame frame;
+    private JFrame finestra;
      
     
     public SchermataBase(ModelloGioco model) {
@@ -50,13 +50,13 @@ public class SchermataBase {
         punteggio_panel = new PunteggioPanel(modello_gioco);
         start_panel = new StartPanel(this, modello_gioco);
          
-        frame = new JFrame();
-        frame.setTitle("2048");
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(630, 370));  
-        frame.setResizable(false);
+        finestra = new JFrame();
+        finestra.setTitle("2048");
+        finestra.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        finestra.setPreferredSize(new Dimension(630, 370));  
+        finestra.setResizable(false);
         
-        frame.addWindowListener(new WindowAdapter() {
+        finestra.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
                 esci();
@@ -70,10 +70,10 @@ public class SchermataBase {
         panel_principale.add(griglia_panel);   
         panel_principale.add(crea_panel_laterale());
         
-        frame.add(panel_principale);
-        frame.setLocationByPlatform(true);
-        frame.pack();
-        frame.setVisible(true);
+        finestra.add(panel_principale);
+        finestra.setLocationByPlatform(true);
+        finestra.pack();
+        finestra.setVisible(true);
     }
  
     private JPanel crea_panel_laterale() {
@@ -81,25 +81,36 @@ public class SchermataBase {
         panel_laterale.setLayout(new BoxLayout(panel_laterale, BoxLayout.PAGE_AXIS));
         panel_laterale.add(punteggio_panel.getPanel());
         panel_laterale.add(Box.createVerticalStrut(30));
-        panel_laterale.add(start_panel.getPanel());
+        panel_laterale.add(start_panel.get_panel());
         panel_laterale.setBackground(Color.ORANGE);
         return panel_laterale;
     }
      
     private void inizializza_pulsanti() { 
+        //inizializzazione pulsanti
+        KeyStroke button_W = KeyStroke.getKeyStroke("W");
+        KeyStroke button_A = KeyStroke.getKeyStroke("A");
+        KeyStroke button_S = KeyStroke.getKeyStroke("S");
+        KeyStroke button_D = KeyStroke.getKeyStroke("D");
+        
         //permette di fare un Bind tra un evento di input e un oggetto
         InputMap inputMap = griglia_panel.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
         //prima faccio con WHEN_IN_FOCUSED_WINDOW che ha id=2, quindi reperibile da WASD
         
-        inputMap.put(KeyStroke.getKeyStroke("W"), "FRECCIA_SU");
-        inputMap.put(KeyStroke.getKeyStroke("S"), "FRECCIA_GIU");
-        inputMap.put(KeyStroke.getKeyStroke("A"), "FRECCIA_SX");
-        inputMap.put(KeyStroke.getKeyStroke("D"), "FRECCIA_DX");
+        KeyStroke button_SU = KeyStroke.getKeyStroke("UP");
+        KeyStroke button_GIU = KeyStroke.getKeyStroke("DOWN");
+        KeyStroke button_DESTRA = KeyStroke.getKeyStroke("RIGHT");
+        KeyStroke button_SINISTRA = KeyStroke.getKeyStroke("LEFT");
+
+        inputMap.put(button_W, "FRECCIA_SU");
+        inputMap.put(button_S, "FRECCIA_GIU");
+        inputMap.put(button_A, "FRECCIA_SX");
+        inputMap.put(button_D, "FRECCIA_DX");
          
-        inputMap.put(KeyStroke.getKeyStroke("UP"), "FRECCIA_SU");
-        inputMap.put(KeyStroke.getKeyStroke("DOWN"), "FRECCIA_GIU");
-        inputMap.put(KeyStroke.getKeyStroke("LEFT"), "FRECCIA_SX");
-        inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "FRECCIA_DX");
+        inputMap.put(button_SU, "FRECCIA_SU");
+        inputMap.put(button_GIU, "FRECCIA_GIU");
+        inputMap.put(button_SINISTRA, "FRECCIA_SX");
+        inputMap.put(button_DESTRA, "FRECCIA_DX");
          
         inputMap = griglia_panel.getInputMap(JPanel.WHEN_FOCUSED);
         //poi faccio con WHEN_FOCUSED che ha id=0, quindi reperibile da UP,DW,SX,DX
@@ -118,7 +129,7 @@ public class SchermataBase {
     public void esci() {
         modello_gioco.imposta_punteggio();
         gestore_punteggi.salva_gioco();
-        frame.dispose();
+        finestra.dispose();
         System.exit(0);
     }
      

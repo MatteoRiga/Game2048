@@ -41,7 +41,7 @@ public class StartPanel {
         panel.add(startGameButton); 
     }
  
-    public JPanel getPanel() {
+    public JPanel get_panel() {
         return panel;
     }
 }

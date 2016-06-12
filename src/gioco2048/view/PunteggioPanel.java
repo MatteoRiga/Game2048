@@ -11,16 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
  
-import java.awt.Color;
-
 import gioco2048.model.ModelloGioco;
 
 public class PunteggioPanel {
      
     private static final Insets margini   = new Insets(20, 20, 20, 20); 
-     
-    private static final NumberFormat number_format = NumberFormat.getInstance();
-     
+ 
     private ModelloGioco modello_gioco;
      
     private JPanel panel;
@@ -44,7 +40,7 @@ public class PunteggioPanel {
         //MIGLIOR_PUNTEGGIO_LABEL
         //----------------------------------
         JLabel miglior_punteggio_label = new JLabel("Miglior Punteggio:");       
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_punteggio_label, 
                            0, //[0][0]
                            0, 
@@ -57,7 +53,7 @@ public class PunteggioPanel {
         miglior_punteggio_field = new JTextField(6); // costruisce la field con una larghezza stabilita
         miglior_punteggio_field.setEditable(false);
         miglior_punteggio_field.setHorizontalAlignment(JTextField.RIGHT);       
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_punteggio_field, 
                            1, //[1][0]
                            0, 
@@ -71,7 +67,7 @@ public class PunteggioPanel {
         //MIGLIOR_CELLA_LABEL
         //----------------------------------
         JLabel miglior_casella_label = new JLabel("Miglior Casella:");       
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_casella_label, 
                            0, //[0][1]
                            1, 
@@ -85,7 +81,7 @@ public class PunteggioPanel {
         miglior_casella_field.setEditable(false);
         miglior_casella_field.setHorizontalAlignment(JTextField.RIGHT);
        
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_casella_field, 
                            1, //[1][1]
                            1, 
@@ -99,7 +95,7 @@ public class PunteggioPanel {
         //MIGLIOR_PUNTEGGIO_CORRENTE_LABEL
         //----------------------------------
         JLabel miglior_punteggio_corrente_label = new JLabel("Punteggio Corrente:");
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_punteggio_corrente_label, 
                            0, //[0][2]
                            2, 
@@ -112,7 +108,7 @@ public class PunteggioPanel {
         miglior_punteggio_corrente_field = new JTextField(6);
         miglior_punteggio_corrente_field.setEditable(true);
         miglior_punteggio_corrente_field.setHorizontalAlignment(JTextField.RIGHT);
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_punteggio_corrente_field, 
                            1, //[1][2]
                            2, 
@@ -126,7 +122,7 @@ public class PunteggioPanel {
         //MIGLIOR_CASELLA_CORRENTE_LABEL
         //----------------------------------
         JLabel miglior_casella_corrente = new JLabel("Miglior Casella:");       
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_casella_corrente, 
                            0, //[0][3]
                            3, 
@@ -139,7 +135,7 @@ public class PunteggioPanel {
         miglior_casella_corrente_field = new JTextField(6);
         miglior_casella_corrente_field.setEditable(false);
         miglior_casella_corrente_field.setHorizontalAlignment(JTextField.RIGHT);       
-        AggiungiComponente(panel, 
+        aggiungi_componente(panel, 
                            miglior_casella_corrente_field, 
                            1, //[1][3]
                            3, 
@@ -151,7 +147,7 @@ public class PunteggioPanel {
         //----------------------------------
     }
  
-    private void AggiungiComponente(Container container,  //è il mio jpanel
+    private void aggiungi_componente(Container container,  //è il mio jpanel
                               Component component, //la componente da aggiungere
                               int gridx, // posizione asse x
                               int gridy, // posizione asse y
@@ -178,10 +174,10 @@ public class PunteggioPanel {
     
     
     public void aggiorna_punteggio_panel() {
-        miglior_punteggio_field.setText(number_format.format(modello_gioco.get_miglior_punteggio()));
-        miglior_casella_field.setText(number_format.format(modello_gioco.get_miglior_casella()));
-        miglior_punteggio_corrente_field.setText(number_format.format(modello_gioco.get_miglior_punteggio_corrente()));
-        miglior_casella_corrente_field.setText(number_format.format(modello_gioco.get_miglior_casella_corrente()));
+        miglior_punteggio_field.setText(String.valueOf(modello_gioco.get_miglior_punteggio()));
+        miglior_casella_field.setText(String.valueOf(modello_gioco.get_miglior_casella()));
+        miglior_punteggio_corrente_field.setText(String.valueOf(modello_gioco.get_miglior_punteggio_corrente()));
+        miglior_casella_corrente_field.setText(String.valueOf(modello_gioco.get_miglior_casella_corrente()));
     }
  
     public JPanel getPanel() {
