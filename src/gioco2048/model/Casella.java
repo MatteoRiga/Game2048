@@ -34,7 +34,7 @@ public final class Casella {
     }
      
     public boolean is_valore_zero() {
-        if(valore==0)
+        if(valore == 0)
             return true;
         else
             return false;
@@ -53,25 +53,23 @@ public final class Casella {
             Font font = new Font("Bebas Neue Regular", Font.PLAIN, 28);
             FontRenderContext frc = new FontRenderContext(null, true, true);
 
-            String s = Integer.toString(valore);
-            BufferedImage image = crea_immagine(font, frc, LARGHEZZA_CASELLA, s);
+            String valore_stringa = Integer.toString(valore);
+            BufferedImage image = crea_immagine(font, frc, LARGHEZZA_CASELLA, valore_stringa);
             g.drawImage(image, posizione_casella.x, posizione_casella.y, null);
         }
     }
     
-    private BufferedImage crea_immagine(Font font, FontRenderContext frc, int width, String s) { 
+    private BufferedImage crea_immagine(Font font, FontRenderContext frc, int larghezza_casella, String s) { 
  
-        Font largeFont = font.deriveFont((float) (width / 4));
+        Font largeFont = font.deriveFont((float) (larghezza_casella / 4));
         
         Rectangle2D r = largeFont.getStringBounds(s, frc); //
         
         int rWidth = (int) Math.round(r.getWidth());    //larghezza of rectangle
         int rHeight = (int) Math.round(r.getHeight());  //altezza of rectangle
-        int rX = (int) Math.round(r.getX()); //coordinate of upper X coordinate of rectangle
-        int rY = (int) Math.round(r.getY()); //coordinate of upper Y coordinate of rectangle
         
         
-        BufferedImage image = new BufferedImage(width, width, BufferedImage.TYPE_INT_RGB);
+        BufferedImage image = new BufferedImage(larghezza_casella, larghezza_casella, BufferedImage.TYPE_INT_RGB);
          
         Graphics gg = image.getGraphics();
         gg.setColor(new Color(ColorUtil.color_griglia));
@@ -82,10 +80,11 @@ public final class Casella {
         gg.fillRoundRect(0, 0, image.getWidth(), image.getHeight(), 25, 25); 
 
         
-        int x = (width / 2) - (rWidth / 2) - rX;
-        int y = (width / 2) - (rHeight / 2) - rY;
+        int x = (larghezza_casella / 2) - (rWidth / 2);
+        int y = (larghezza_casella / 2) - (rHeight / 2) + 18;
         
         gg.setFont(largeFont);
+        
         
         gg.setColor(ColorUtil.get_colore_testo(valore));
         gg.drawString(s, x, y);

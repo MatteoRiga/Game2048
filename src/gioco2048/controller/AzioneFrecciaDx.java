@@ -7,14 +7,14 @@ import javax.swing.AbstractAction;
  
 import gioco2048.view.SchermataBase;
 import gioco2048.model.ModelloGioco;
- 
+
 public class AzioneFrecciaDx extends AbstractAction {
   
     private SchermataBase schermata_base;
      
     private ModelloGioco modello_gioco;
-    
  
+    
     public AzioneFrecciaDx(SchermataBase frame, ModelloGioco model) {
         this.schermata_base = frame;
         this.modello_gioco = model;
@@ -23,7 +23,7 @@ public class AzioneFrecciaDx extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (modello_gioco.puoi_muovere()) {
-            if (modello_gioco.muovi_caselle_dx()) {
+            if (modello_gioco.muovi_caselle_dx()) {            
                 if (modello_gioco.game_over()) {
                     modello_gioco.set_puoi_muovere(false);
                 } else {
